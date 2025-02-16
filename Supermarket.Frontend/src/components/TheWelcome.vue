@@ -5,8 +5,29 @@ import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
+import { onMounted } from 'vue'
 
 const openReadmeInEditor = () => fetch('/__open-in-editor?file=README.md')
+
+
+const fetchData = async () => {
+  debugger;
+  try {
+    const response = await fetch('https://localhost:7296/WeatherForecast'); // Example API
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const jsonData = await response.json();
+    console.log(jsonData);
+  } catch (err) {
+    // error.value = `Error: ${err.message}`; // Handle errors
+    // console.error(err.message);
+  } finally {
+    // loading.value = false; // Data loading is complete
+  }
+}
+
+onMounted(fetchData())
 </script>
 
 <template>
