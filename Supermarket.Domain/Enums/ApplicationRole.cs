@@ -1,4 +1,4 @@
-﻿namespace Supermarket.Data.Enums;
+﻿namespace Supermarket.Domain.Enums;
 
 public enum ApplicationRole
 {

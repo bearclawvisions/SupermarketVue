@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Supermarket.Data.Entities;
-using Supermarket.Data.Enums;
+using Supermarket.Domain.Entities;
+using Supermarket.Domain.Enums;
 
 namespace Supermarket.Data.Database;
 

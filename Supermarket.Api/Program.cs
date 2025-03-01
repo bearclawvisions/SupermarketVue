@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Supermarket.Data.Database;
-using Supermarket.Data.Entities;
+using Supermarket.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 

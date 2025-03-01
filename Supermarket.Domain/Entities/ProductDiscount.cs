@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Supermarket.Data.Entities;
+namespace Supermarket.Domain.Entities;
 
 public class ProductDiscount
 {

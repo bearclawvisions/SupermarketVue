@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Business", "Sup
 		{7AF354B1-C196-4F24-9A2E-AA65A55A2513} = {7AF354B1-C196-4F24-9A2E-AA65A55A2513}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Domain", "Supermarket.Domain\Supermarket.Domain.csproj", "{C16C99E2-CE74-4567-9890-81C77D4EDE08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{B34B8D96-0A84-4CC9-B5B2-E4FC2F8A8964}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B34B8D96-0A84-4CC9-B5B2-E4FC2F8A8964}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B34B8D96-0A84-4CC9-B5B2-E4FC2F8A8964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C16C99E2-CE74-4567-9890-81C77D4EDE08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C16C99E2-CE74-4567-9890-81C77D4EDE08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C16C99E2-CE74-4567-9890-81C77D4EDE08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C16C99E2-CE74-4567-9890-81C77D4EDE08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

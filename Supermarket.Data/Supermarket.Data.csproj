@@ -20,4 +20,8 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Supermarket.Domain\Supermarket.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

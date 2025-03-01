@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Supermarket.Data.Entities;
+using Supermarket.Domain.Entities;
 
 namespace Supermarket.Api.Controllers;
 
