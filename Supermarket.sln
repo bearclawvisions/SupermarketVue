@@ -1,10 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Api", "Supermarket.Api\Supermarket.Api.csproj", "{0F599E8B-5AFB-4510-9060-8DDFD7438EF3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B34B8D96-0A84-4CC9-B5B2-E4FC2F8A8964} = {B34B8D96-0A84-4CC9-B5B2-E4FC2F8A8964}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Data", "Supermarket.Data\Supermarket.Data.csproj", "{7AF354B1-C196-4F24-9A2E-AA65A55A2513}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Business", "Supermarket.Business\Supermarket.Business.csproj", "{B34B8D96-0A84-4CC9-B5B2-E4FC2F8A8964}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7AF354B1-C196-4F24-9A2E-AA65A55A2513} = {7AF354B1-C196-4F24-9A2E-AA65A55A2513}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
