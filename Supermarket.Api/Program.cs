@@ -1,32 +1,12 @@
-using Supermarket.Api;
 using Supermarket.Api.App_Start;
-using Supermarket.Api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-ConfigureServices.AddServices(builder.Services, builder.Configuration);
-
+builder.Services.AddServices(builder.Configuration);
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddCors(options =>
-    options.AddPolicy("CorsPolicy", policy =>
-    {
-        policy.WithOrigins("http://localhost:5173")
-            .SetIsOriginAllowed(_ => true) // vue specific?
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
-        // policy.AllowAnyMethod()
-        //     .SetIsOriginAllowed(_ => true)
-        //     .AllowAnyHeader()
-        //     .AllowCredentials();
-    })
-);
-
-ConfigureDatabase.AddConnection(builder.Services, builder.Configuration);
+builder.Services.SwaggerSettings();
+builder.Services.CorsSettings();
+builder.Services.AddConnection();
 
 var app = builder.Build();
 

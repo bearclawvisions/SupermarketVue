@@ -9,7 +9,7 @@ namespace Supermarket.Api.App_Start;
 
 public static class ConfigureDatabase
 {
-    public static void AddConnection(IServiceCollection services, ConfigurationManager configuration)
+    public static void AddConnection(this IServiceCollection services)
     {
         services.AddDbContext<SuperContext>((serviceProvider, options) =>
         {
