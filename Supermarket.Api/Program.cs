@@ -1,8 +1,10 @@
+using Supermarket.Api;
 using Supermarket.Api.App_Start;
+using Supermarket.Api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-ConfigureServices.AddServices(builder.Services);
+ConfigureServices.AddServices(builder.Services, builder.Configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -1,13 +1,20 @@
-﻿using Supermarket.Data.Repository.Implementation;
+﻿using Supermarket.Api.Models;
+using Supermarket.Data.Repository.Implementation;
 using Supermarket.Data.Repository.Interface;
 
 namespace Supermarket.Api.App_Start;
 
 public abstract class ConfigureServices
 {
-    public static void AddServices(IServiceCollection services)
+    public static void AddServices(IServiceCollection services, IConfiguration configuration)
     {
+        // https://medium.com/@dozieogbo/a-better-way-to-inject-appsettings-in-asp-net-core-96be36ffa22b
+        // https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-9.0#bind-hierarchical-configuration-data-using-the-options-pattern
+        services.Configure<AppSettings>(configuration.GetSection(nameof(AppSettings)));
+
         // repositories
         services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
+        
+        // services
     }
 }
