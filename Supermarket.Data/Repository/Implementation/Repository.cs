@@ -49,9 +49,4 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         _dbSet.RemoveRange(entities);
     }
-
-    public async Task<int> SaveChangesAsync()
-    {
-        return await _context.SaveChangesAsync();
-    }
 }

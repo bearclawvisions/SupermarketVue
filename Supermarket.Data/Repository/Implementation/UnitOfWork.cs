@@ -14,8 +14,8 @@ public class UnitOfWork : IUnitOfWork
         Product = new ProductRepository(_context);
     }
 
-    public void SaveChangesAsync()
+    public async Task SaveChangesAsync()
     {
-        _context.SaveChangesAsync();
+        await _context.SaveChangesAsync();
     }
 }

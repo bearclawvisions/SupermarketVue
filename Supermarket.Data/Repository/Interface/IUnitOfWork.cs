@@ -3,5 +3,5 @@
 public interface IUnitOfWork
 {
     IProductRepository Product { get; }
-    void SaveChangesAsync();
+    Task SaveChangesAsync();
 }
