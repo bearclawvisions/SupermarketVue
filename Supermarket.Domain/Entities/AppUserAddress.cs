@@ -5,7 +5,7 @@ namespace Supermarket.Domain.Entities;
 
 public class AppUserAddress
 {
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     
     [ForeignKey("AppUser")]
@@ -18,7 +18,7 @@ public class AppUserAddress
     public int HouseNumber { get; set; }
     
     [MaxLength(3)]
-    public int HouseNumberAppendix { get; set; }
+    public string? HouseNumberAppendix { get; set; }
     
     [MaxLength(25)]
     public required string City { get; set; }

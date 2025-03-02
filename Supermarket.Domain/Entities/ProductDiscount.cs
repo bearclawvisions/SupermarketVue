@@ -5,7 +5,7 @@ namespace Supermarket.Domain.Entities;
 
 public class ProductDiscount
 {
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     [ForeignKey("Product")]

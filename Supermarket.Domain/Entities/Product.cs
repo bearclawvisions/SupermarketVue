@@ -6,7 +6,7 @@ namespace Supermarket.Domain.Entities;
 
 public class Product
 {
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     
     [ForeignKey("ProductCategory")]

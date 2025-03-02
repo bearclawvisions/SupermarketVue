@@ -1,11 +1,8 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Supermarket.Data.Database;
-using Supermarket.Domain.Entities;
+using Supermarket.Api.App_Start;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+ConfigureServices.AddServices(builder.Services);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -27,12 +24,7 @@ builder.Services.AddCors(options =>
     })
 );
 
-builder.Services.AddDbContext<SuperContext>(options => 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddIdentity<AppUser, IdentityRole>()
-    .AddEntityFrameworkStores<SuperContext>()
-    .AddDefaultTokenProviders();
+ConfigureDatabase.AddConnection(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
@@ -44,15 +36,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("CorsPolicy");
-
 app.UseHttpsRedirection();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.MapControllers();
 
 app.Run();
