@@ -1,6 +1,7 @@
 ﻿using Supermarket.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml;
 
 namespace Supermarket.Domain.Entities;
 
@@ -15,11 +16,8 @@ public class Product
     [MaxLength(50)]
     public required string Name { get; set; }
     
-    [MaxLength(255)]
-    public string? Description { get; set; }
-    
-    [MaxLength(25)]
-    public string? ProductSize { get; set; }
+    [Column(TypeName = "xml")]
+    public required string Metadata { get; set; } // xml
     
     [Range(0, 10000)]
     public double Price { get; set; }
