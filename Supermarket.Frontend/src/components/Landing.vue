@@ -22,9 +22,11 @@
 // }
 //
 // onMounted(fetchData())
+import Button from "primevue/button";
+
 </script>
 
 <template>
   <h1>basic landing</h1>
-  somewhere redirect to login page
+  <Button label="test" />
 </template>
