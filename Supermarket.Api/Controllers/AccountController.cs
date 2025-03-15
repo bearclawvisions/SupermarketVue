@@ -6,7 +6,9 @@ using Supermarket.Domain.Enums;
 
 namespace Supermarket.Api.Controllers;
 
-public class AccountController : Controller
+[ApiController]
+[Route("[controller]")]
+public class AccountController : ControllerBase
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
