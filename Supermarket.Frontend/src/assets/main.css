@@ -1,2 +1,14 @@
 @import "tailwindcss";
 @import 'primeicons/primeicons.css';
+
+.shell-wrapper {
+    @apply flex flex-col h-screen justify-between;
+}
+
+.basic-container {
+    @apply flex flex-col justify-center items-center w-full p-3 leading-tight;
+}
+
+.footer {
+    @apply leading-tight;
+}

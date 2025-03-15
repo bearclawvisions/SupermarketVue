@@ -3,5 +3,7 @@ import Shell from '@/components/Shell.vue'
 </script>
 
 <template>
-  <Shell />
+  <div class="shell-wrapper">
+    <Shell />
+  </div>
 </template>
