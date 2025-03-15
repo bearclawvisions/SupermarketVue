@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace Supermarket.Domain.Entities;
 
-public class Product
+public class Product : Audit
 {
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
@@ -27,16 +27,4 @@ public class Product
     public ProductStatus Status { get; set; }
     
     public DateTime? ExpiryDate { get; set; }
-    
-    public DateTime? DateCreated { get; set; }
-    
-    [ForeignKey("ApplicationUser")]
-    [MaxLength(10)]
-    public required string CreatedBy { get; set; }
-    
-    public DateTime? LastModifiedDate { get; set; }
-    
-    [ForeignKey("ApplicationUser")]
-    [MaxLength(10)]
-    public string? ModifiedBy { get; set; }
 }

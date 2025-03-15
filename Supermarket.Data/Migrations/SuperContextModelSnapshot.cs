@@ -51,31 +51,31 @@ namespace Supermarket.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c0dc0a96-ae65-4c70-9b7c-4ab9eb49651f",
+                            Id = "76693f17-9f51-4e7c-be23-25bd8a90abf9",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "6ee33dd4-3b03-4b20-9c58-b22d33850910",
+                            Id = "f3dc867f-1da6-4328-a544-9d4ecc4fe5b5",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "01d9034a-68ed-404a-b263-685456ff17e8",
+                            Id = "50c29b5d-e725-42e2-8d96-0ac350cc72e6",
                             Name = "Supervisor",
                             NormalizedName = "SUPERVISOR"
                         },
                         new
                         {
-                            Id = "c510a92c-5d5d-4311-ba1d-4f4a0ea1c080",
+                            Id = "7f07e463-e8ee-4c2d-881d-ad30a6049353",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "39606c55-fab6-405c-849c-2e97e8a892f4",
+                            Id = "2c76f046-f3d3-4da5-91c6-bc360d24c8d9",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -419,10 +419,25 @@ namespace Supermarket.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("LastModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Name")
                         .IsRequired()
