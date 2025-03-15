@@ -11,33 +11,38 @@ const menuItems = ref([
     route: '/',
   },
   {
-    label: 'Sub-items',
-    icon: 'pi pi-palette',
+    label: 'Shop',
+    icon: 'pi pi-shop',
+    route: '/shop',
+  },
+  {
+    label: 'Business information',
+    icon: 'pi pi-building',
     items: [
       {
         label: 'About',
         route: '/about'
+      },
+      {
+        label: 'Privacy',
+        route: '/privacy'
       }
-      // {
-      //   label: 'Unstyled',
-      //   route: '/theming/unstyled'
-      // }
+    ]
+  },
+  {
+    label: 'External',
+    icon: 'pi pi-external-link',
+    items: [
+      {
+        label: 'Vue.js',
+        url: 'https://vuejs.org/'
+      },
+      {
+        label: 'Vite.js',
+        url: 'https://vitejs.dev/'
+      }
     ]
   }
-  // {
-  //   label: 'External',
-  //   icon: 'pi pi-home',
-  //   items: [
-  //     {
-  //       label: 'Vue.js',
-  //       url: 'https://vuejs.org/'
-  //     },
-  //     {
-  //       label: 'Vite.js',
-  //       url: 'https://vitejs.dev/'
-  //     }
-  //   ]
-  // }
 ])
 
 const { isLoggedIn } = useAccountStore()
