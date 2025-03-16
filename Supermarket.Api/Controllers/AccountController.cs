@@ -25,23 +25,21 @@ public class AccountController : ControllerBase
         _context = context;
     }
 
-    [HttpGet("login")]
+    [HttpPost("login")]
     public IActionResult Login()
     {
         return Ok();
     }
     
-    [HttpGet("register")]
+    [HttpPost("register")]
     public IActionResult Register()
     {
         return Ok();
     }
 
-    [HttpGet("test")]
-    public IActionResult Test()
+    [HttpPost("logout")]
+    public IActionResult Logout()
     {
-        var test = _context.Products.ToList();
-        
         return Ok();
     }
 }
