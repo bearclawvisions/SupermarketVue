@@ -87,7 +87,9 @@ const { isLoggedIn } = useAccountStore()
           <span>placeholder - account</span>
         </div>
         <div v-else>
-          <span>Log in</span>
+          <RouterLink to="/login">Log in</RouterLink>
+          <span> / </span>
+          <RouterLink to="/register">Register</RouterLink>
         </div>
       </template>
     </Menubar>
