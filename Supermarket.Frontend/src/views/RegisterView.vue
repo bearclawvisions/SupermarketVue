@@ -1,30 +1,18 @@
 ﻿<script setup lang="ts">
 import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
-import DatePicker from 'primevue/datepicker';
 import Checkbox from 'primevue/checkbox';
 import FloatLabel from 'primevue/floatlabel';
 
 import Panel from 'primevue/panel';
+import { Message } from 'primevue';
 import Button from 'primevue/button';
 import { Form } from '@primevue/forms';
-import DynamicField from '@/components/account/DynamicField.vue';
 import { ref, computed } from 'vue';
-
-const registerFormSchema = [
-  { name: 'firstName', label: 'First Name', type: 'text', required: true },
-  { name: 'lastName', label: 'Last Name', type: 'text', required: true },
-  { name: 'birthDate', label: 'Birth Date', type: 'date', required: false },
-  { name: 'email', label: 'Email', type: 'text', required: true },
-  { name: 'password', label: 'Password', type: 'password', required: true },
-  { name: 'confirmPassword', label: 'Confirm Password', type: 'password', required: true },
-  // { name: 'terms', label: 'Terms and Conditions', type: 'checkbox', required: true }
-];
 
 const formValues = ref({
   firstName: '',
   lastName: '',
-  birthDate: Date.now(),
   email: '',
   password: '',
   confirmPassword: '',
@@ -34,7 +22,15 @@ const formValues = ref({
 const resolver = ({ values }: any) => {
   const errors: Record<string, { message: string }[]> = {};
   if (!values.firstName) errors.firstName = [{ message: 'First Name is required.' }];
+  if (!values.lastName) errors.lastName = [{ message: 'Last Name is required.' }];
+  
   if (!values.email) errors.email = [{ message: 'Email is required.' }];
+  
+  if (!values.password) errors.password = [{ message: 'Please enter a password.' }];
+  if (!values.confirmPassword) errors.confirmPassword = [{ message: 'Please confirm your password.' }];
+  
+  if (!values.terms) errors.terms = [{ message: 'Please accept the terms and conditions.' }];
+  
   return { values, errors };
 };
 
@@ -56,27 +52,52 @@ const onFormSubmit = ({ valid, values }: any) => {
 
       <Form v-slot="$form" :resolver="resolver" :formValues @submit="onFormSubmit">
         
-<!--        <DynamicField-->
-<!--          v-for="field in registerFormSchema"-->
-<!--          :key="field.name"-->
-<!--          :field="field"-->
-<!--          v-model="($form.values as Record<string, any>)[field.name]"-->
-<!--          :error="($form.errors as Record<string, any>)[field.name]?.[0]?.message"-->
-<!--        />-->
-
-        <div class="mb-4" v-for="field in registerFormSchema">
-          <FloatLabel>
-            <InputText v-model="field.name" :id="field.name" autocomplete="off" fluid />
-<!--            <Password v-else-if="field.type === 'password'" v-model="model" :id="field.name" :feedback="false" toggle-mask fluid />-->
-<!--            <DatePicker v-else-if="field.type === 'date'" v-model="model" :inputId="field.name" format="yyyy-MM-dd" fluid />-->
-<!--            <Checkbox v-else-if="field.type === 'checkbox'" v-model="model" :inputId="field.name" binary fluid />-->
-            <label :for="field.name">{{ field.label }}</label>
+        <div class="basic-form-item">
+          <FloatLabel variant="on">
+            <InputText name="firstName" type="text" id="firstName" autocomplete="off" fluid />
+            <label for="firstName">First Name</label>
           </FloatLabel>
-
-          <!-- Error message -->
-<!--          <small v-if="error" class="p-error">{{ error }}</small>-->
+          <Message v-if="$form.firstName?.invalid" severity="error" size="small" variant="simple">{{ $form.firstName.error.message }}</Message>
         </div>
 
+        <div class="basic-form-item">
+          <FloatLabel variant="on">
+            <InputText name="lastName" type="text" id="lastName" autocomplete="off" fluid />
+            <label for="lastName">Last Name</label>
+          </FloatLabel>
+          <Message v-if="$form.lastName?.invalid" severity="error" size="small" variant="simple">{{ $form.lastName.error.message }}</Message>
+        </div>
+
+        <div class="basic-form-item">
+          <FloatLabel variant="on">
+            <InputText name="email" type="email" id="email" autocomplete="off" fluid />
+            <label for="email">Email</label>
+          </FloatLabel>
+          <Message v-if="$form.email?.invalid" severity="error" size="small" variant="simple">{{ $form.email.error.message }}</Message>
+        </div>
+
+        <div class="basic-form-item">
+          <FloatLabel variant="on">
+            <Password name="password" id="password" :feedback="false" toggle-mask fluid />
+            <label for="password">Password</label>
+          </FloatLabel>
+          <Message v-if="$form.password?.invalid" severity="error" size="small" variant="simple">{{ $form.password.error.message }}</Message>
+        </div>
+
+        <div class="basic-form-item">
+          <FloatLabel variant="on">
+            <Password name="confirmPassword" id="confirmPassword" :feedback="false" toggle-mask fluid />
+            <label for="confirmPassword">Confirm Password</label>
+          </FloatLabel>
+          <Message v-if="$form.confirmPassword?.invalid" severity="error" size="small" variant="simple">{{ $form.confirmPassword.error.message }}</Message>
+        </div>
+
+        <div class="basic-form-item">
+          <Checkbox name="terms" id="terms" binary fluid />
+          <label for="terms"> Terms and conditions</label>
+          <Message v-if="$form.terms?.invalid" severity="error" size="small" variant="simple">{{ $form.terms.error.message }}</Message>
+        </div>
+        
         <Button type="submit" label="Register" />
       </Form>
     </Panel>

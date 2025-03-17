@@ -12,3 +12,7 @@
 .footer {
     @apply leading-tight;
 }
+
+.basic-form-item {
+    @apply mb-4;
+}
