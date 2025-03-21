@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Supermarket.Data.Database;
+using Supermarket.Domain.Dto.Account;
 using Supermarket.Domain.Entities;
 using Supermarket.Domain.Enums;
 
@@ -25,19 +27,28 @@ public class AccountController : ControllerBase
         _context = context;
     }
 
-    [HttpPost("login")]
+    [HttpPost("Login")]
     public IActionResult Login()
     {
         return Ok();
     }
     
-    [HttpPost("register")]
-    public IActionResult Register()
+    [AllowAnonymous]
+    [HttpPost("Register")]
+    public IActionResult Register([FromBody] RegisterDto user)
     {
-        return Ok();
+        if (!ModelState.IsValid)
+        {
+            // Log validation errors for debugging
+            var errors = ModelState.Values.SelectMany(v => v.Errors)
+                .Select(e => e.ErrorMessage)
+                .ToList();
+            return BadRequest(new { Errors = errors });
+        }
+        return Ok(new { message = "User registered successfully!" });
     }
 
-    [HttpPost("logout")]
+    [HttpPost("Logout")]
     public IActionResult Logout()
     {
         return Ok();

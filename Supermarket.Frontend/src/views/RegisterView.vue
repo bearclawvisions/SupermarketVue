@@ -9,6 +9,7 @@ import { Message } from 'primevue';
 import Button from 'primevue/button';
 import { Form } from '@primevue/forms';
 import { ref, computed } from 'vue';
+import axios from '@/api/axios.ts';
 
 const formValues = ref({
   firstName: '',
@@ -34,11 +35,14 @@ const resolver = ({ values }: any) => {
   return { values, errors };
 };
 
-const onFormSubmit = ({ valid, values }: any) => {
+const onFormSubmit = async ({ valid, values }: any) => {
+  console.log(values)
   if (valid) {
-    console.log('Form submitted successfully', values);
+    await axios.post('/Account/Register', values)
+      .then(response => console.log(response.data))
+      .catch(error => console.error('POST Error:', error))
   }
-};
+}
 </script>
 
 <template>
