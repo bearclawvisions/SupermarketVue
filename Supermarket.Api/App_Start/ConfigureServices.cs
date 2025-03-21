@@ -1,4 +1,6 @@
 ﻿using Supermarket.Api.Models;
+using Supermarket.Business.Services.Implementation;
+using Supermarket.Business.Services.Interface;
 using Supermarket.Data.Repository.Implementation;
 using Supermarket.Data.Repository.Interface;
 
@@ -16,5 +18,6 @@ public static class ConfigureServices
         services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
         
         // services
+        services.AddScoped(typeof(IAppUserService), typeof(AppAppUserService));
     }
 }
