@@ -24,11 +24,43 @@ const resolver = ({ values }: any) => {
   const errors: Record<string, { message: string }[]> = {};
   if (!values.firstName) errors.firstName = [{ message: 'First Name is required.' }];
   if (!values.lastName) errors.lastName = [{ message: 'Last Name is required.' }];
+
+  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  if (!values.email) {
+    errors.email = [{ message: 'Email is required.' }];
+  } else if (!emailRegex.test(values.email)) {
+    errors.email = [{ message: 'Please enter a valid email address.' }];
+  }
+
+  if (!values.password) {
+    errors.password = [{ message: 'Please enter a password.' }];
+  } else {
+    // Password length check
+    if (values.password.length < 8) {
+      if (!errors.password) errors.password = [];
+      errors.password.push({ message: 'Password must be at least 8 characters long.' });
+    }
+    // Lowercase letter check
+    if (!/[a-z]/.test(values.password)) {
+      if (!errors.password) errors.password = [];
+      errors.password.push({ message: 'Password must contain at least one lowercase letter.' });
+    }
+    // Uppercase letter check
+    if (!/[A-Z]/.test(values.password)) {
+      if (!errors.password) errors.password = [];
+      errors.password.push({ message: 'Password must contain at least one uppercase letter.' });
+    }
+    // Special character check
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(values.password)) {
+      if (!errors.password) errors.password = [];
+      errors.password.push({ message: 'Password must contain at least one special character.' });
+    }
+  }
   
-  if (!values.email) errors.email = [{ message: 'Email is required.' }];
-  
-  if (!values.password) errors.password = [{ message: 'Please enter a password.' }];
   if (!values.confirmPassword) errors.confirmPassword = [{ message: 'Please confirm your password.' }];
+  if (values.password !== values.confirmPassword) {
+    errors.confirmPassword = [{ message: 'Passwords do not match.' }];
+  }
   
   if (!values.terms) errors.terms = [{ message: 'Please accept the terms and conditions.' }];
   
@@ -36,7 +68,6 @@ const resolver = ({ values }: any) => {
 };
 
 const onFormSubmit = async ({ valid, values }: any) => {
-  console.log(values)
   if (valid) {
     await axios.post('/Account/Register', values)
       .then(response => console.log(response.data))
