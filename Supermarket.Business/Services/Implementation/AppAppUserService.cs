@@ -8,13 +8,11 @@ namespace Supermarket.Business.Services.Implementation;
 public class AppAppUserService : IAppUserService
 {
     private readonly UserManager<AppUser> _userManager;
-    private readonly SignInManager<AppUser> _signInManager;
     private readonly RoleManager<IdentityRole> _roleManager;
 
-    public AppAppUserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
+    public AppAppUserService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
     {
         _userManager = userManager;
-        _signInManager = signInManager;
         _roleManager = roleManager;
     }
     
