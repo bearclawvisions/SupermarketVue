@@ -35,22 +35,18 @@ const resolver = ({ values }: any) => {
   if (!values.password) {
     errors.password = [{ message: 'Please enter a password.' }];
   } else {
-    // Password length check
     if (values.password.length < 8) {
       if (!errors.password) errors.password = [];
       errors.password.push({ message: 'Password must be at least 8 characters long.' });
     }
-    // Lowercase letter check
     if (!/[a-z]/.test(values.password)) {
       if (!errors.password) errors.password = [];
       errors.password.push({ message: 'Password must contain at least one lowercase letter.' });
     }
-    // Uppercase letter check
     if (!/[A-Z]/.test(values.password)) {
       if (!errors.password) errors.password = [];
       errors.password.push({ message: 'Password must contain at least one uppercase letter.' });
     }
-    // Special character check
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(values.password)) {
       if (!errors.password) errors.password = [];
       errors.password.push({ message: 'Password must contain at least one special character.' });
@@ -69,7 +65,7 @@ const resolver = ({ values }: any) => {
 
 const onFormSubmit = async ({ valid, values }: any) => {
   if (valid) {
-    await axios.post('/Account/Register', values)
+    await axios.post('/api/Account/Register', values)
       .then(response => console.log(response.data))
       .catch(error => console.error('POST Error:', error))
   }
@@ -116,7 +112,9 @@ const onFormSubmit = async ({ valid, values }: any) => {
             <Password name="password" id="password" :feedback="false" toggle-mask fluid />
             <label for="password">Password</label>
           </FloatLabel>
-          <Message v-if="$form.password?.invalid" severity="error" size="small" variant="simple">{{ $form.password.error.message }}</Message>
+          <template v-for="error in ($form.password.errors)">
+            <Message v-if="$form.password?.invalid" severity="error" size="small" variant="simple">{{ error.message }}</Message>
+          </template>
         </div>
 
         <div class="basic-form-item">

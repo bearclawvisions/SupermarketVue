@@ -8,9 +8,7 @@ using Supermarket.Domain.Enums;
 
 namespace Supermarket.Api.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class AccountController : ControllerBase
+public class AccountController : BaseController
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly SignInManager<AppUser> _signInManager;
@@ -27,6 +25,7 @@ public class AccountController : ControllerBase
         _context = context;
     }
 
+    [AllowAnonymous]
     [HttpPost("Login")]
     public IActionResult Login()
     {
@@ -39,13 +38,13 @@ public class AccountController : ControllerBase
     {
         if (!ModelState.IsValid)
         {
-            // Log validation errors for debugging
             var errors = ModelState.Values.SelectMany(v => v.Errors)
                 .Select(e => e.ErrorMessage)
                 .ToList();
             return BadRequest(new { Errors = errors });
         }
-        return Ok(new { message = "User registered successfully!" });
+        // return Ok(new { message = "User registered successfully!" });
+        return Ok();
     }
 
     [HttpPost("Logout")]
