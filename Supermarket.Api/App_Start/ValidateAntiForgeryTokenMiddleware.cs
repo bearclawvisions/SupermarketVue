@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Antiforgery;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Antiforgery;
 
 public class ValidateAntiForgeryTokenMiddleware
 {
@@ -19,11 +17,11 @@ public class ValidateAntiForgeryTokenMiddleware
         if (HttpMethods.IsPost(context.Request.Method))
         {
             // Check if antiforgery validation has already been performed
-            var antiforgeryFeature = context.Features.Get<IAntiforgeryValidationFeature>();
-            if (antiforgeryFeature?.IsValid == false)
+            var antiForgeryFeature = context.Features.Get<IAntiforgeryValidationFeature>();
+            if (antiForgeryFeature?.IsValid == false)
             {
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
-                await context.Response.WriteAsync("Invalid anti-forgery token.");
+                await context.Response.WriteAsync(antiForgeryFeature.Error.Message + Environment.NewLine + antiForgeryFeature.Error.InnerException);
                 return; // Stop further processing
             }
 
@@ -34,7 +32,7 @@ public class ValidateAntiForgeryTokenMiddleware
             catch (AntiforgeryValidationException ex)
             {
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
-                await context.Response.WriteAsync("Invalid anti-forgery token.");
+                await context.Response.WriteAsync(ex.Message + Environment.NewLine + ex.InnerException);
                 return; // Stop processing request
             }
         }
