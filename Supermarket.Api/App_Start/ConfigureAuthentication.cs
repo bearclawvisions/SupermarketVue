@@ -22,10 +22,12 @@ public static class ConfigureAuthentication
         
         services.AddAntiforgery(options =>
         {
-            options.HeaderName = "X-CSRF-TOKEN";
-            options.Cookie.Name = "X-CSRF-COOKIE";
+            options.FormFieldName = "__RequestVerificationToken";
+            options.HeaderName = "X-XSRF-TOKEN";
+            options.Cookie.Name = "X-XSRF-COOKIE";
             options.Cookie.SameSite = SameSiteMode.None; // Required for cross-origin CSRF handling
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            options.SuppressXFrameOptionsHeader = false;
         });
     }
 }

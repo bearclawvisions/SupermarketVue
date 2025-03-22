@@ -20,7 +20,7 @@ public static class ConfigureDatabase
         });
 
         services.AddIdentity<AppUser, IdentityRole>()
-            .AddEntityFrameworkStores<SuperContext>()
-            .AddDefaultTokenProviders();
+            .AddEntityFrameworkStores<SuperContext>();
+            // .AddDefaultTokenProviders(); // this is for jwt
     }
 }

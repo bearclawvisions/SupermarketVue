@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Supermarket.Business.Services.Interface;
@@ -12,10 +13,12 @@ namespace Supermarket.Api.Controllers;
 public class AppUserController : BaseController
 {
     private readonly IAppUserService _appUserService;
+    private readonly IAntiforgery _antiforgery;
 
-    public AppUserController(IAppUserService appUserService)
+    public AppUserController(IAppUserService appUserService, IAntiforgery antiforgery)
     {
         _appUserService = appUserService;
+        _antiforgery = antiforgery;
     }
 
     [AllowAnonymous]
@@ -26,6 +29,7 @@ public class AppUserController : BaseController
     }
     
     [AllowAnonymous]
+    [RequireAntiforgeryToken]
     [HttpPost("Register")]
     public async Task<IActionResult> Register([FromBody] RegisterDto user)
     {

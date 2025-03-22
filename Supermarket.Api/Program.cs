@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Antiforgery;
 using Supermarket.Api.App_Start;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,25 @@ app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
+
+app.UseAntiforgery();
+app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
+// var antiForgery = app.Services.GetRequiredService<IAntiforgery>();
+// app.Use((context, next) =>
+// {
+//     var requestPath = context.Request.Path.Value;
+//
+//     if (string.Equals(requestPath, "/", StringComparison.OrdinalIgnoreCase)
+//         || string.Equals(requestPath, "/index.html", StringComparison.OrdinalIgnoreCase))
+//     {
+//         var tokenSet = antiForgery.GetAndStoreTokens(context);
+//         context.Response.Cookies.Append("XSRF-TOKEN", tokenSet.RequestToken!,
+//             new CookieOptions { HttpOnly = false });
+//     }
+//
+//     return next(context);
+// });
+
 app.MapControllers();
 
 app.Run();
