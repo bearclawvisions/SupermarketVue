@@ -27,7 +27,6 @@ app.UseAuthorization();
 app.UseAntiforgery();
 app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
 
-
 app.MapControllers();
 
 app.Run();

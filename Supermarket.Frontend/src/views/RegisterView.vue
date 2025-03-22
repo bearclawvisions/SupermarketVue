@@ -8,9 +8,8 @@ import Panel from 'primevue/panel';
 import { Message } from 'primevue';
 import Button from 'primevue/button';
 import { Form } from '@primevue/forms';
-import { ref, computed, inject, type Ref } from 'vue'
+import { ref } from 'vue'
 import axios from '@/api/axios.ts';
-import type { AxiosHeaderValue } from 'axios'
 
 const formValues = ref({
   firstName: '',
@@ -65,13 +64,9 @@ const resolver = ({ values }: any) => {
   return { values, errors };
 };
 
-const csrfToken = inject('csrfToken') as Ref<string | undefined>;
 const onFormSubmit = async ({ valid, values }: any) => {
-  console.log(csrfToken?.value);
   if (valid) {
-    await axios.post('/api/AppUser/Register', values, {
-      headers: { 'X-XSRF-TOKEN': csrfToken?.value }
-    })
+    await axios.post('/api/AppUser/Register', values)
       .then(response => console.log(response.data))
       .catch(error => console.error('POST Error:', error))
   }
