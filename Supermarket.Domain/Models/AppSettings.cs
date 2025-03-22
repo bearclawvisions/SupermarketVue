@@ -1,4 +1,4 @@
-﻿namespace Supermarket.Api.Models;
+﻿namespace Supermarket.Domain.Models;
 
 public class AppSettings
 {

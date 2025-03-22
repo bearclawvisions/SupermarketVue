@@ -1,8 +1,8 @@
-﻿using Supermarket.Api.Models;
-using Supermarket.Business.Services.Implementation;
+﻿using Supermarket.Business.Services.Implementation;
 using Supermarket.Business.Services.Interface;
 using Supermarket.Data.Repository.Implementation;
 using Supermarket.Data.Repository.Interface;
+using Supermarket.Domain.Models;
 
 namespace Supermarket.Api.App_Start;
 

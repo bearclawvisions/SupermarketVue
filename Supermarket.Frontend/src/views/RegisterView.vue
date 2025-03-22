@@ -112,8 +112,8 @@ const onFormSubmit = async ({ valid, values }: any) => {
             <Password name="password" id="password" :feedback="false" toggle-mask fluid />
             <label for="password">Password</label>
           </FloatLabel>
-          <template v-for="error in ($form.password.errors)">
-            <Message v-if="$form.password?.invalid" severity="error" size="small" variant="simple">{{ error.message }}</Message>
+          <template v-if="$form.password?.invalid">
+            <Message v-for="error in ($form.password.errors)" severity="error" size="small" variant="simple">{{ error.message }}</Message>
           </template>
         </div>
 

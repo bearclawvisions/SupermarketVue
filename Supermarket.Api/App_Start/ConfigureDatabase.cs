@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Supermarket.Api.Models;
 using Supermarket.Data.Database;
 using Supermarket.Domain.Entities;
+using Supermarket.Domain.Models;
 
 namespace Supermarket.Api.App_Start;
 
 public static class ConfigureDatabase
 {
-    public static void AddConnection(this IServiceCollection services)
+    public static void AddDatabaseConnection(this IServiceCollection services)
     {
         services.AddDbContext<SuperContext>((serviceProvider, options) =>
         {

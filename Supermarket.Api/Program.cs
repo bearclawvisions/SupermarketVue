@@ -6,7 +6,8 @@ builder.Services.AddServices(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.SwaggerSettings();
 builder.Services.CorsSettings();
-builder.Services.AddConnection();
+builder.Services.AddDatabaseConnection();
+builder.Services.ConfigureCookiesAndAuthentication();
 
 var app = builder.Build();
 

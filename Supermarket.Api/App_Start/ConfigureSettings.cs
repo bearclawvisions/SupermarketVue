@@ -8,7 +8,6 @@ public static class ConfigureSettings
             options.AddPolicy("CorsPolicy", policy =>
             {
                 policy.WithOrigins("http://localhost:5173")
-                    // .SetIsOriginAllowed(_ => true) // vue specific?
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials();
