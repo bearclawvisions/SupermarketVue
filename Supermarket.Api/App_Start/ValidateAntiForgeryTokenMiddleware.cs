@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Antiforgery;
 
+namespace Supermarket.Api.App_Start;
+
 public class ValidateAntiForgeryTokenMiddleware
 {
     private readonly RequestDelegate _next;

@@ -67,8 +67,7 @@ const resolver = ({ values }: any) => {
 const onFormSubmit = async ({ valid, values }: any) => {
   if (valid) {
     await axios.post('/api/AppUser/Register', values)
-      .then(response => console.log(response.data))
-      .catch(error => console.error('POST Error:', error))
+      .catch(error => console.error('POST Error:', error.response.data));
   }
 }
 </script>

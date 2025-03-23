@@ -22,9 +22,19 @@ if (app.Environment.IsDevelopment())
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseAntiforgery();
+var antiForgery = app.Services.GetRequiredService<IAntiforgery>();
+app.Use((context, next) =>
+{
+        var tokenSet = antiForgery.GetAndStoreTokens(context);
+        context.Response.Cookies.Append("X-XSRF-TOKEN", tokenSet.RequestToken!,
+            new CookieOptions { HttpOnly = false });
+
+    return next(context);
+});
 app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
 
 app.MapControllers();
