@@ -1,4 +1,4 @@
-﻿using Supermarket.Domain.Dto.Account;
+﻿using Supermarket.Domain.Dto.AppUser;
 
 namespace Supermarket.Business.Services.Interface;
 

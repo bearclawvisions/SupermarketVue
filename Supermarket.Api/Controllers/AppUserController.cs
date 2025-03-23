@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Supermarket.Business.Services.Interface;
-using Supermarket.Domain.Dto.Account;
+using Supermarket.Domain.Dto.AppUser;
 
 namespace Supermarket.Api.Controllers;
 
@@ -13,6 +13,19 @@ public class AppUserController : BaseController
     public AppUserController(IAppUserService appUserService)
     {
         _appUserService = appUserService;
+    }
+    
+    [AllowAnonymous]
+    [HttpGet("GetSuperMarketCookie")]
+    public IActionResult GetSuperMarketCookie()
+    {
+        // Response.Cookies.Append("TestCookie", "Hello", new CookieOptions
+        // {
+        //     HttpOnly = true,
+        //     Secure = true,
+        //     SameSite = SameSiteMode.None
+        // });
+        return Ok();
     }
 
     [AllowAnonymous]
@@ -33,7 +46,7 @@ public class AppUserController : BaseController
         {
             return BadRequest(result);
         }
-        // return Ok(new { message = "User registered successfully!" });
+        
         return Ok(result);
     }
 
