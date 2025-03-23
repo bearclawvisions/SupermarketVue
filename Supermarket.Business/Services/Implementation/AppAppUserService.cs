@@ -48,4 +48,17 @@ public class AppAppUserService : IAppUserService
 
         return result.Errors.FirstOrDefault().Description;
     }
+
+    public async Task<AppUser> GetUserForLogin(LoginDto userLogin)
+    {
+        var dbUser = await _userManager.FindByEmailAsync(userLogin.Email);
+        if (dbUser == null)
+            throw new Exception($"User {userLogin.Email} not found");
+        
+        var result = await _userManager.CheckPasswordAsync(dbUser, userLogin.Password);
+        if (!result)
+            throw new Exception("Password incorrect");
+
+        return dbUser;
+    }
 }

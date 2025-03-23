@@ -1,17 +1,21 @@
 ﻿using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Supermarket.Business.Services.Interface;
 using Supermarket.Domain.Dto.AppUser;
+using Supermarket.Domain.Entities;
 
 namespace Supermarket.Api.Controllers;
 
 public class AppUserController : BaseController
 {
+    private readonly SignInManager<AppUser> _signInManager;
     private readonly IAppUserService _appUserService;
 
-    public AppUserController(IAppUserService appUserService)
+    public AppUserController(IAppUserService appUserService, SignInManager<AppUser> signInManager)
     {
+        _signInManager = signInManager;
         _appUserService = appUserService;
     }
     
@@ -24,8 +28,11 @@ public class AppUserController : BaseController
 
     [AllowAnonymous]
     [HttpPost("Login")]
-    public IActionResult Login()
+    public async Task<IActionResult> Login([FromBody] LoginDto userLogin)
     {
+        var appUser = await _appUserService.GetUserForLogin(userLogin);
+        await _signInManager.SignInAsync(appUser, true);
+
         return Ok();
     }
     
