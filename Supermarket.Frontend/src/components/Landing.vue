@@ -1,8 +1,23 @@
 <script setup lang="ts">
 import Panel from "primevue/panel";
+import Button from 'primevue/button';
+import Toast from 'primevue/toast';
+
+import { useToast } from "primevue/usetoast";
+const toast = useToast();
+
+const show = () => {
+  toast.add({ severity: 'info', summary: 'Info', detail: 'Message Content', life: 3000 });
+};
+
 </script>
 
 <template>
+  <div class="card flex justify-center">
+    <Toast />
+    <Button label="Show" @click="show()" />
+  </div>
+  
   <div class="basic-container">
     <Panel>
       <template #header>
