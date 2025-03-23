@@ -4,7 +4,7 @@ import { onBeforeMount } from 'vue';
 import axios from '@/api/axios.ts';
 
 onBeforeMount(async () => {
-  await axios.get("/api/AppUser/GetSuperMarketCookie");
+  await axios.get("/api/AppUser/GetXsrfToken");
 });
 </script>
 

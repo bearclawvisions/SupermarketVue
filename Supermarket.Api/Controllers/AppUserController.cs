@@ -16,15 +16,9 @@ public class AppUserController : BaseController
     }
     
     [AllowAnonymous]
-    [HttpGet("GetSuperMarketCookie")]
-    public IActionResult GetSuperMarketCookie()
+    [HttpGet("GetXsrfToken")]
+    public IActionResult GetXsrfToken()
     {
-        // Response.Cookies.Append("TestCookie", "Hello", new CookieOptions
-        // {
-        //     HttpOnly = true,
-        //     Secure = true,
-        //     SameSite = SameSiteMode.None
-        // });
         return Ok();
     }
 
