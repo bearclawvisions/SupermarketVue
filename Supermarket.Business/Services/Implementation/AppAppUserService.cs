@@ -43,7 +43,7 @@ public class AppAppUserService : IAppUserService
 
             // await _emailService.SendEmailAsync(user.Email, "Confirm your email", confirmationLink);
 
-            return "Registration successful. Please check your email for confirmation.";
+            return user.UserName;
         }
 
         return result.Errors.FirstOrDefault().Description;

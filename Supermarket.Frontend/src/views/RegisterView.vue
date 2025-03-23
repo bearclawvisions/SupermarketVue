@@ -20,6 +20,7 @@ const formValues = ref({
   terms: false,
 });
 
+const registerEmail = ref<string>('');
 
 const resolver = ({ values }: any) => {
   const errors: Record<string, { message: string }[]> = {};
@@ -67,6 +68,9 @@ const resolver = ({ values }: any) => {
 const onFormSubmit = async ({ valid, values }: any) => {
   if (valid) {
     await axios.post('/api/AppUser/Register', values)
+      .then(result => {
+        registerEmail.value = result.data.username;
+      })
       .catch(error => console.error('POST Error:', error.response.data));
   }
 }
@@ -74,65 +78,94 @@ const onFormSubmit = async ({ valid, values }: any) => {
 
 <template>
   <div class="basic-container">
-    <Panel>
-      <template #header>
+    <template v-if="registerEmail === ''">
+      <Panel>
+        <template #header>
+          <div>
+            <span class="font-bold">Register for a new account</span>
+          </div>
+        </template>
+
+        <Form v-slot="$form" :resolver="resolver" :formValues @submit="onFormSubmit">
+
+          <div class="basic-form-item">
+            <FloatLabel variant="on">
+              <InputText name="firstName" type="text" id="firstName" autocomplete="off" fluid />
+              <label for="firstName">First Name</label>
+            </FloatLabel>
+            <Message v-if="$form.firstName?.invalid" severity="error" size="small" variant="simple">
+              {{ $form.firstName.error.message }}
+            </Message>
+          </div>
+
+          <div class="basic-form-item">
+            <FloatLabel variant="on">
+              <InputText name="lastName" type="text" id="lastName" autocomplete="off" fluid />
+              <label for="lastName">Last Name</label>
+            </FloatLabel>
+            <Message v-if="$form.lastName?.invalid" severity="error" size="small" variant="simple">
+              {{ $form.lastName.error.message }}
+            </Message>
+          </div>
+
+          <div class="basic-form-item">
+            <FloatLabel variant="on">
+              <InputText name="email" type="email" id="email" autocomplete="off" fluid />
+              <label for="email">Email</label>
+            </FloatLabel>
+            <Message v-if="$form.email?.invalid" severity="error" size="small" variant="simple">
+              {{ $form.email.error.message }}
+            </Message>
+          </div>
+
+          <div class="basic-form-item">
+            <FloatLabel variant="on">
+              <Password name="password" id="password" :feedback="false" toggle-mask fluid />
+              <label for="password">Password</label>
+            </FloatLabel>
+            <template v-if="$form.password?.invalid">
+              <Message v-for="error in ($form.password.errors)" severity="error" size="small" variant="simple">
+                {{ error.message }}
+              </Message>
+            </template>
+          </div>
+
+          <div class="basic-form-item">
+            <FloatLabel variant="on">
+              <Password name="confirmPassword" id="confirmPassword" :feedback="false" toggle-mask fluid />
+              <label for="confirmPassword">Confirm Password</label>
+            </FloatLabel>
+            <Message v-if="$form.confirmPassword?.invalid" severity="error" size="small" variant="simple">
+              {{ $form.confirmPassword.error.message }}
+            </Message>
+          </div>
+
+          <div class="basic-form-item">
+            <Checkbox name="terms" id="terms" binary fluid />
+            <label for="terms"> Terms and conditions</label>
+            <Message v-if="$form.terms?.invalid" severity="error" size="small" variant="simple">
+              {{ $form.terms.error.message }}
+            </Message>
+          </div>
+
+          <Button type="submit" label="Register" />
+        </Form>
+      </Panel>
+    </template>
+    
+    <template v-else>
+      <Panel>
+        <template #header>
+          <div>
+            <span class="font-bold">Registration successful!</span>
+          </div>
+        </template>
+
         <div>
-          <span class="font-bold">Register for a new account</span>
-        </div>
-      </template>
-
-      <Form v-slot="$form" :resolver="resolver" :formValues @submit="onFormSubmit">
-        
-        <div class="basic-form-item">
-          <FloatLabel variant="on">
-            <InputText name="firstName" type="text" id="firstName" autocomplete="off" fluid />
-            <label for="firstName">First Name</label>
-          </FloatLabel>
-          <Message v-if="$form.firstName?.invalid" severity="error" size="small" variant="simple">{{ $form.firstName.error.message }}</Message>
+          You can now login with the email: {{ registerEmail }} 
         </div>
 
-        <div class="basic-form-item">
-          <FloatLabel variant="on">
-            <InputText name="lastName" type="text" id="lastName" autocomplete="off" fluid />
-            <label for="lastName">Last Name</label>
-          </FloatLabel>
-          <Message v-if="$form.lastName?.invalid" severity="error" size="small" variant="simple">{{ $form.lastName.error.message }}</Message>
-        </div>
-
-        <div class="basic-form-item">
-          <FloatLabel variant="on">
-            <InputText name="email" type="email" id="email" autocomplete="off" fluid />
-            <label for="email">Email</label>
-          </FloatLabel>
-          <Message v-if="$form.email?.invalid" severity="error" size="small" variant="simple">{{ $form.email.error.message }}</Message>
-        </div>
-
-        <div class="basic-form-item">
-          <FloatLabel variant="on">
-            <Password name="password" id="password" :feedback="false" toggle-mask fluid />
-            <label for="password">Password</label>
-          </FloatLabel>
-          <template v-if="$form.password?.invalid">
-            <Message v-for="error in ($form.password.errors)" severity="error" size="small" variant="simple">{{ error.message }}</Message>
-          </template>
-        </div>
-
-        <div class="basic-form-item">
-          <FloatLabel variant="on">
-            <Password name="confirmPassword" id="confirmPassword" :feedback="false" toggle-mask fluid />
-            <label for="confirmPassword">Confirm Password</label>
-          </FloatLabel>
-          <Message v-if="$form.confirmPassword?.invalid" severity="error" size="small" variant="simple">{{ $form.confirmPassword.error.message }}</Message>
-        </div>
-
-        <div class="basic-form-item">
-          <Checkbox name="terms" id="terms" binary fluid />
-          <label for="terms"> Terms and conditions</label>
-          <Message v-if="$form.terms?.invalid" severity="error" size="small" variant="simple">{{ $form.terms.error.message }}</Message>
-        </div>
-        
-        <Button type="submit" label="Register" />
-      </Form>
-    </Panel>
+      </Panel>
+    </template>
   </div>
 </template>
