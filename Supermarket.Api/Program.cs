@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Antiforgery;
 using Supermarket.Api.App_Start;
+using Supermarket.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +36,8 @@ app.Use((context, next) =>
 
     return next(context);
 });
-app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
+app.UseMiddleware<AntiForgeryTokenHandler>();
+app.UseMiddleware<ExceptionHandler>();
 
 app.MapControllers();
 

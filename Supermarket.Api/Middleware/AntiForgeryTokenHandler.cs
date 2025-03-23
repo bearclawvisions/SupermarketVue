@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Antiforgery;
 
-namespace Supermarket.Api.App_Start;
+namespace Supermarket.Api.Middleware;
 
-public class ValidateAntiForgeryTokenMiddleware
+public class AntiForgeryTokenHandler
 {
     private readonly RequestDelegate _next;
     private readonly IAntiforgery _antiforgery;
 
-    public ValidateAntiForgeryTokenMiddleware(RequestDelegate next, IAntiforgery antiforgery)
+    public AntiForgeryTokenHandler(RequestDelegate next, IAntiforgery antiforgery)
     {
         _next = next;
         _antiforgery = antiforgery;

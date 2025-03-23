@@ -9,6 +9,21 @@ const api : AxiosInstance = axios.create({
   },
 });
 
+// Global error handler
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      const { statusCode, message } = error.response.data;
+      // toast.error(message || "An error occurred", { timeout: 5000 });
+    } else {
+      // toast.error("Network error. Please try again.");
+    }
+    return Promise.reject(error);
+  }
+);
+
+
 api.interceptors.request.use(
   (config) => {
     const csrfToken = getCookie("X-XSRF-TOKEN");
