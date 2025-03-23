@@ -1,5 +1,8 @@
 ﻿import axios from 'axios';
 import type { AxiosInstance } from 'axios';
+import { useToast } from 'primevue/usetoast';
+
+const toast = useToast();
 
 const api : AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL, // Set base URL
@@ -15,9 +18,9 @@ api.interceptors.response.use(
   (error) => {
     if (error.response) {
       const { statusCode, message } = error.response.data;
-      // toast.error(message || "An error occurred", { timeout: 5000 });
+      toast.add({ severity: 'error', summary: statusCode, detail: message, life: 5000 });
     } else {
-      // toast.error("Network error. Please try again.");
+      toast.add({ severity: 'error', summary: 'Error', detail: "Something went wrong...", life: 5000 });
     }
     return Promise.reject(error);
   }
