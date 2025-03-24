@@ -2,12 +2,18 @@
 import Panel from "primevue/panel";
 import Button from 'primevue/button';
 import Toast from 'primevue/toast';
+import { Severity } from '@/enums/Severity.ts';
+
 
 import { useToast } from "primevue/usetoast";
+import { getEnumKeyByValue } from '@/composables/enumHelper.ts'
+import { ToastHelper } from '@/composables/toastHelper.ts'
 const toast = useToast();
+const toastHelper = new ToastHelper(toast);
 
 const show = () => {
-  toast.add({ severity: 'info', summary: 'Info', detail: 'Message Content', life: 3000 });
+  toastHelper.displayInfo('Toast via toasthelper');
+  // toast.add({ severity: Severity.INFO, summary: getEnumKeyByValue(Severity, Severity.INFO), detail: 'Message Content', life: 5000 });
 };
 
 </script>
