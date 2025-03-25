@@ -1,8 +1,11 @@
 ﻿import axios from 'axios';
 import type { AxiosInstance } from 'axios';
 import { useToast } from 'primevue/usetoast';
+import { ToastHelper } from '@/composables/toastHelper.ts'
 
 // const toast = useToast();
+// const toastHelper = new ToastHelper(toast);
+
 
 const api : AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL, // Set base URL
@@ -18,9 +21,9 @@ api.interceptors.response.use(
   (error) => {
     if (error.response) {
       const { statusCode, message } = error.response.data;
-      // toast.add({ severity: 'error', summary: statusCode, detail: message, life: 5000 });
+      // toastHelper.displayError(message, 5000)
     } else {
-      // toast.add({ severity: 'error', summary: 'Error', detail: "Something went wrong...", life: 5000 });
+      // toastHelper.displayError("Something went wrong...", 5000);
     }
     return Promise.reject(error);
   }
