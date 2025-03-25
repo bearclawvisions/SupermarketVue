@@ -1,10 +1,5 @@
 ﻿import axios from 'axios';
 import type { AxiosInstance } from 'axios';
-import { useToast } from 'primevue/usetoast';
-import { ToastHelper } from '@/composables/toastHelper.ts'
-
-// const toast = useToast();
-// const toastHelper = new ToastHelper(toast);
 
 
 const api : AxiosInstance = axios.create({
@@ -21,9 +16,9 @@ api.interceptors.response.use(
   (error) => {
     if (error.response) {
       const { statusCode, message } = error.response.data;
-      // toastHelper.displayError(message, 5000)
+      // toastHelper.displayInfo(message, 5000)
     } else {
-      // toastHelper.displayError("Something went wrong...", 5000);
+      // toastHelper.displayInfo("Something went wrong...", 5000);
     }
     return Promise.reject(error);
   }

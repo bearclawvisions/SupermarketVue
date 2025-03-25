@@ -1,6 +1,6 @@
 ﻿import { Severity } from '@/enums/Severity.ts';
-import { getEnumKeyByValue } from '@/composables/enumHelper.ts'
-import type { ToastServiceMethods } from 'primevue'
+import { getEnumKeyByValue } from '@/composables/enumHelper.ts';
+import type { ToastServiceMethods } from 'primevue';
 
 export class ToastHelper {
   private toastInstance: ToastServiceMethods;
