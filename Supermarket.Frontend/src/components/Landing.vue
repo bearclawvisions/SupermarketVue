@@ -1,23 +1,8 @@
 <script setup lang="ts">
 import Panel from "primevue/panel";
-import Button from 'primevue/button';
-
-import { useToast } from "primevue/usetoast";
-import { ToastHelper } from '@/composables/toastHelper.ts'
-const toast = useToast();
-const toastHelper = new ToastHelper(toast);
-
-const show = () => {
-  toastHelper.displayInfo('Toast via toasthelper');
-};
-
 </script>
 
 <template>
-  <div class="card flex justify-center">
-    <Button label="Show" @click="show()" />
-  </div>
-  
   <div class="basic-container">
     <Panel>
       <template #header>

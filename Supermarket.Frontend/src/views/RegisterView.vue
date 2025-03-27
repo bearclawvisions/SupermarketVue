@@ -3,13 +3,15 @@ import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
 import Checkbox from 'primevue/checkbox';
 import FloatLabel from 'primevue/floatlabel';
-
 import Panel from 'primevue/panel';
 import { Message } from 'primevue';
 import Button from 'primevue/button';
 import { Form } from '@primevue/forms';
-import { ref } from 'vue'
+import { inject, ref } from 'vue'
 import axios from '@/api/axios.ts';
+import type { ToastHelper } from '@/composables/toastHelper.ts'
+
+const toastHelper = inject('toastHelper') as ToastHelper;
 
 const formValues = ref({
   firstName: '',
@@ -20,7 +22,7 @@ const formValues = ref({
   terms: false,
 });
 
-const registerEmail = ref<string>('');
+const hasRegistered = ref<boolean>(false);
 
 const resolver = ({ values }: any) => {
   const errors: Record<string, { message: string }[]> = {};
@@ -69,16 +71,20 @@ const onFormSubmit = async ({ valid, values }: any) => {
   if (valid) {
     await axios.post('/api/AppUser/Register', values)
       .then(result => {
-        registerEmail.value = result.data.username;
+        hasRegistered.value = true;
+        toastHelper.displayInfo(result.data.message);
       })
-      .catch(error => console.error('POST Error:', error.response.data));
+      .catch(error => {
+        console.error(error.response.data);
+        toastHelper.displayError(error.response.data.message);
+      });
   }
 }
 </script>
 
 <template>
   <div class="basic-container">
-    <template v-if="registerEmail === ''">
+    <template v-if="!hasRegistered">
       <Panel>
         <template #header>
           <div>
