@@ -11,10 +11,11 @@ import { inject, ref } from 'vue'
 import axios from '@/api/axios.ts';
 import type { ToastHelper } from '@/composables/toastHelper.ts'
 import type { ErrorResponse, StringResponse } from '@/types/Responses.ts'
+import type { RegisterModel } from '@/types/Models.ts'
 
 const toastHelper = inject('toastHelper') as ToastHelper;
 
-const formValues = ref({
+const registerFormValues = ref<RegisterModel>({
   firstName: '',
   lastName: '',
   email: '',
@@ -25,7 +26,7 @@ const formValues = ref({
 
 const hasRegistered = ref<boolean>(false);
 
-const resolver = ({ values }: any) => {
+const registerResolver = ({ values }: {values: any}) => {
   const errors: Record<string, { message: string }[]> = {};
   if (!values.firstName) errors.firstName = [{ message: 'First Name is required.' }];
   if (!values.lastName) errors.lastName = [{ message: 'Last Name is required.' }];
@@ -68,9 +69,9 @@ const resolver = ({ values }: any) => {
   return { values, errors };
 };
 
-const onFormSubmit = async ({ valid, values }: { valid: boolean, values: any}) => {
+const onRegisterFormSubmit = async ({ valid, values }: { valid: boolean, values: any }) => {
   if (valid) {
-    await axios.post('/api/AppUser/Register', values)
+    await axios.post('/api/AppUser/Register', values as RegisterModel)
       .then((result: StringResponse) => {
         hasRegistered.value = true;
         toastHelper.displayInfo(result.data);
@@ -92,7 +93,7 @@ const onFormSubmit = async ({ valid, values }: { valid: boolean, values: any}) =
           </div>
         </template>
 
-        <Form v-slot="$form" :resolver="resolver" :formValues @submit="onFormSubmit">
+        <Form v-slot="$form" :resolver="registerResolver" :registerFormValues @submit="onRegisterFormSubmit">
 
           <div class="basic-form-item">
             <FloatLabel variant="on">

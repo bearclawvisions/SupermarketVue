@@ -16,3 +16,7 @@
 .basic-form-item {
     @apply mb-4;
 }
+
+.clickable-link {
+    @apply underline hover:text-blue-700;
+}

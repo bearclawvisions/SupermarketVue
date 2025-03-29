@@ -30,10 +30,18 @@ public class AppUserController : BaseController
     [HttpPost("Login")]
     public async Task<IActionResult> Login([FromBody] LoginDto userLogin)
     {
-        var appUser = await _appUserService.GetUserForLogin(userLogin);
-        await _signInManager.SignInAsync(appUser, true);
+        try
+        {
+            var appUser = await _appUserService.GetUserForLogin(userLogin);
+            await _signInManager.SignInAsync(appUser, false);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+        
 
-        return Ok();
+        return Ok("Successfully logged in.");
     }
     
     [AllowAnonymous]
