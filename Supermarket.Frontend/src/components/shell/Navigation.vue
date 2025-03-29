@@ -45,7 +45,7 @@ const menuItems = ref([
   }
 ])
 
-const { isLoggedIn } = useAccountStore()
+const accountStore = useAccountStore()
 </script>
 
 <template>
@@ -83,7 +83,7 @@ const { isLoggedIn } = useAccountStore()
       </template>
 
       <template #end>
-        <div v-if="isLoggedIn">
+        <div v-if="accountStore.isLoggedIn">
           <span>placeholder - account</span>
         </div>
         <div v-else>

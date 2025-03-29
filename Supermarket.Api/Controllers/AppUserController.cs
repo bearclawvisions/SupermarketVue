@@ -12,22 +12,24 @@ public class AppUserController : BaseController
 {
     private readonly SignInManager<AppUser> _signInManager;
     private readonly IAppUserService _appUserService;
+    private readonly UserManager<AppUser> _userManager;
 
-    public AppUserController(IAppUserService appUserService, SignInManager<AppUser> signInManager)
+    public AppUserController(IAppUserService appUserService, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
     {
         _signInManager = signInManager;
         _appUserService = appUserService;
+        _userManager = userManager;
     }
     
     [AllowAnonymous]
-    [HttpGet("GetXsrfToken")]
+    [HttpGet(nameof(GetXsrfToken))]
     public IActionResult GetXsrfToken()
     {
         return Ok();
     }
 
     [AllowAnonymous]
-    [HttpPost("Login")]
+    [HttpPost(nameof(Login))]
     public async Task<IActionResult> Login([FromBody] LoginDto userLogin)
     {
         try
@@ -42,6 +44,19 @@ public class AppUserController : BaseController
         
 
         return Ok("Successfully logged in.");
+    }
+    
+    [AllowAnonymous]
+    [HttpGet(nameof(AuthenticateUser))]
+    public async Task<IActionResult> AuthenticateUser()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null)
+        {
+            return Unauthorized();
+        }
+
+        return Ok("Authenticated");
     }
     
     [AllowAnonymous]

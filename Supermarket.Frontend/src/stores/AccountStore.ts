@@ -1,20 +1,33 @@
 ﻿import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import axios from '@/api/axios.ts'
+import type { ErrorResponse, StringResponse } from '@/types/Responses.ts'
 
 export const useAccountStore = defineStore('account', () => {
-  const isLoggedIn = ref(false)
+  const isLoggedIn = ref(false);
 
-  function logIn() {
-    isLoggedIn.value = true
+  function logIn(): void {
+    isLoggedIn.value = true;
   }
 
-  function logOut() {
-    isLoggedIn.value = false
+  function logOut(): void {
+    isLoggedIn.value = false;
+  }
+
+  async function checkIfLoggedIn(): Promise<void> {
+    await axios.get('api/AppUser/AuthenticateUser')
+      .then((response: StringResponse) => {
+        logIn();
+      })
+      .catch((error: ErrorResponse) => {
+        console.error(error.response.data.message);
+      })
   }
 
   return {
     isLoggedIn,
     logIn,
-    logOut
+    logOut,
+    checkIfLoggedIn
   }
-})
+});

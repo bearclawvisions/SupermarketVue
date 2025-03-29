@@ -14,7 +14,7 @@ import Button from 'primevue/button'
 import { useAccountStore } from '@/stores/AccountStore'
 
 const toastHelper = inject('toastHelper') as ToastHelper
-const { logIn } = useAccountStore();
+const accountStore = useAccountStore();
 
 const loginFormValues = ref<LoginModel>({
   email: '',
@@ -36,7 +36,7 @@ const onLoginFormSubmit = async ({ valid, values }: { valid: boolean, values: an
   if (valid) {
     await axios.post('/api/AppUser/Login', values as RegisterModel)
       .then((result: StringResponse) => {
-        logIn();
+        accountStore.logIn();
         toastHelper.displayInfo(result.data);
       })
       .catch((error: ErrorResponse) => {
