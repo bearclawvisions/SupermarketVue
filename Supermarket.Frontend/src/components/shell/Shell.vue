@@ -7,7 +7,7 @@ import Toast from 'primevue/toast';
 
 <template>
   <Navigation />
-  <Toast />
+  <Toast position="top-center" />
   <RouterView />
   
   <Footer />
