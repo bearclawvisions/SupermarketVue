@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Supermarket.Business.CustomExceptions;
 using Supermarket.Business.Services.Interface;
 using Supermarket.Domain.Dto.AppUser;
 using Supermarket.Domain.Entities;
@@ -36,17 +37,18 @@ public class AppAppUserService : IAppUserService
         var result = await _userManager.CreateAsync(user, newUser.Password);
         
         
-        if (result.Succeeded)
+        if (!result.Succeeded)
         {
-            // var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            // var confirmationLink = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, token }, Request.Scheme);
-
-            // await _emailService.SendEmailAsync(user.Email, "Confirm your email", confirmationLink);
-
-            return "Successfully registered";
+            var errors = result.Errors.Select(e => e.Description);
+            throw new BusinessException(string.Join(Environment.NewLine, errors));
         }
+        
+        // var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        // var confirmationLink = Url.Action("ConfirmEmail", "Auth", new { userId = user.Id, token }, Request.Scheme);
 
-        return result.Errors.FirstOrDefault().Description;
+        // await _emailService.SendEmailAsync(user.Email, "Confirm your email", confirmationLink);
+
+        return "Successfully registered";
     }
 
     public async Task<AppUser> GetUserForLogin(LoginDto userLogin)

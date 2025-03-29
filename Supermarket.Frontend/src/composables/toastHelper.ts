@@ -6,7 +6,7 @@ export class ToastHelper {
   private toastInstance: ToastServiceMethods;
   private defaultLifeTime: number;
 
-  constructor(toastInstance: ToastServiceMethods, defaultLifeTime: number = 3000) {
+  constructor(toastInstance: ToastServiceMethods, defaultLifeTime: number = 5000) {
     this.toastInstance = toastInstance;
     this.defaultLifeTime = defaultLifeTime;
   }

@@ -6,7 +6,8 @@ import { useToast } from "primevue/usetoast";
 import { ToastHelper } from '@/composables/toastHelper.ts'
 
 onBeforeMount(async () => {
-  await axios.get("/api/AppUser/GetXsrfToken");
+  await axios.get("/api/AppUser/GetXsrfToken")
+    .catch(error => console.log(error));
 });
 
 onMounted(async () => {

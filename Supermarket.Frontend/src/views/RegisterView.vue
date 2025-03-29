@@ -10,6 +10,7 @@ import { Form } from '@primevue/forms';
 import { inject, ref } from 'vue'
 import axios from '@/api/axios.ts';
 import type { ToastHelper } from '@/composables/toastHelper.ts'
+import type { ErrorResponse, StringResponse } from '@/types/Responses.ts'
 
 const toastHelper = inject('toastHelper') as ToastHelper;
 
@@ -67,15 +68,14 @@ const resolver = ({ values }: any) => {
   return { values, errors };
 };
 
-const onFormSubmit = async ({ valid, values }: any) => {
+const onFormSubmit = async ({ valid, values }: { valid: boolean, values: any}) => {
   if (valid) {
     await axios.post('/api/AppUser/Register', values)
-      .then(result => {
+      .then((result: StringResponse) => {
         hasRegistered.value = true;
-        toastHelper.displayInfo(result.data.message);
+        toastHelper.displayInfo(result.data);
       })
-      .catch(error => {
-        console.error(error.response.data);
+      .catch((error: ErrorResponse) => {
         toastHelper.displayError(error.response.data.message);
       });
   }
@@ -163,12 +163,12 @@ const onFormSubmit = async ({ valid, values }: any) => {
       <Panel>
         <template #header>
           <div>
-            <span class="font-bold">Registration successful!</span>
+            <span class="font-bold">Registration success!</span>
           </div>
         </template>
 
         <div>
-          You can now login with the email: {{ registerEmail }} 
+          You can now login with the email used in the registration.
         </div>
 
       </Panel>

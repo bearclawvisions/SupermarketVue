@@ -2,7 +2,7 @@
 
 namespace Supermarket.Business.CustomExceptions;
 
-public class BusinessException : System.Exception
+public class BusinessException : Exception
 {
     public int StatusCode { get; }
 
