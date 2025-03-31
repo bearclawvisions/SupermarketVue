@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace Supermarket.Api.App_Start;
 
@@ -30,4 +31,19 @@ public static class ConfigureAuthentication
             options.SuppressXFrameOptionsHeader = false;
         });
     }
+
 }
+
+// public class IClaimsProvider
+// {
+//     public ClaimsPrincipal ClaimsPrincipal { get; }
+// }
+//
+// public class HttpContextClaimsProvider : IClaimsProvider
+// {
+//     public ClaimsPrincipal ClaimsPrincipal { get; private set; }
+//     public HttpContextClaimsProvider(HttpContext httpContext)
+//     {
+//         ClaimsPovider = httpContext.User.Claims as ClaimsPrincipal;
+//     }
+// }

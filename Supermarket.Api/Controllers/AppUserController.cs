@@ -35,7 +35,7 @@ public class AppUserController : BaseController
         try
         {
             var appUser = await _appUserService.GetUserForLogin(userLogin);
-            await _signInManager.SignInAsync(appUser, false);
+            await _signInManager.SignInAsync(appUser, false); // todo op true zetten
         }
         catch (Exception ex)
         {
@@ -50,7 +50,8 @@ public class AppUserController : BaseController
     [HttpGet(nameof(AuthenticateUser))]
     public async Task<IActionResult> AuthenticateUser()
     {
-        var user = await _userManager.GetUserAsync(User);
+        var user = await _appUserService.AuthenticateUser(User);
+        // var user = await _userManager.GetUserAsync(User);
         if (user == null)
         {
             return Unauthorized();

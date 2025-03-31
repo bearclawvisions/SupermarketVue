@@ -7,6 +7,7 @@ public class ServiceBase
 {
     private readonly ILogger _logger;
     private readonly ClaimsPrincipal _claimsPrincipal;
+    // private readonly IHttpContextaccessor _httpContextAccessor;
     
     public ServiceBase(ILogger logger, ClaimsPrincipal claimsPrincipal)
     {

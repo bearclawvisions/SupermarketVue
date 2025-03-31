@@ -3,6 +3,7 @@ using Supermarket.Business.CustomExceptions;
 using Supermarket.Business.Services.Interface;
 using Supermarket.Domain.Dto.AppUser;
 using Supermarket.Domain.Entities;
+using System.Security.Claims;
 
 namespace Supermarket.Business.Services.Implementation;
 
@@ -62,5 +63,12 @@ public class AppAppUserService : IAppUserService
             throw new Exception("Password incorrect");
 
         return dbUser;
+    }
+
+    public async Task<AppUser?> AuthenticateUser(ClaimsPrincipal user)
+    {
+        var dbUser = await _userManager.GetUserAsync(user);
+        
+        return dbUser ?? null;
     }
 }
