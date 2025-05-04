@@ -10,7 +10,7 @@ public static class ConfigureAuthentication
         services.ConfigureApplicationCookie(option =>
         {
             option.Cookie.Name = "Supermarket.Auth";
-            option.Cookie.SameSite = SameSiteMode.None; // allow cross-origin requests
+            option.Cookie.SameSite = SameSiteMode.Lax; // allow cross-origin requests
             option.Cookie.SecurePolicy = CookieSecurePolicy.Always; // require https
             option.Cookie.HttpOnly = true; // Prevents JavaScript access
         });
@@ -26,7 +26,7 @@ public static class ConfigureAuthentication
             options.FormFieldName = "__RequestVerificationToken";
             options.HeaderName = "X-XSRF-TOKEN";
             options.Cookie.Name = "X-XSRF-COOKIE";
-            options.Cookie.SameSite = SameSiteMode.None; // Required for cross-origin CSRF handling
+            options.Cookie.SameSite = SameSiteMode.Lax; // Required for cross-origin CSRF handling
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             options.SuppressXFrameOptionsHeader = false;
         });

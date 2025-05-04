@@ -4,6 +4,9 @@ using Supermarket.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Only used locally, unless present on server as well
+builder.Configuration.AddUserSecrets<Program>();
+
 builder.Services.AddServices(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.SwaggerSettings();
@@ -22,6 +25,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
+
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();

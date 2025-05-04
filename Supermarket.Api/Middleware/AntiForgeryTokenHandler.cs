@@ -23,7 +23,7 @@ public class AntiForgeryTokenHandler
             if (antiForgeryFeature?.IsValid == false)
             {
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
-                await context.Response.WriteAsync(antiForgeryFeature.Error.Message + Environment.NewLine + antiForgeryFeature.Error.InnerException);
+                await context.Response.WriteAsync(antiForgeryFeature.Error?.Message + Environment.NewLine + antiForgeryFeature.Error?.InnerException);
                 return; // Stop further processing
             }
 
