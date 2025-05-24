@@ -78,8 +78,8 @@ public class AppUserController : BaseController
     [HttpPost(nameof(Logout))]
     public IActionResult Logout()
     {
-        var test = _signInManager.SignOutAsync();
+        _signInManager.SignOutAsync();
         
-        return Ok();
+        return Ok("Successfully logged out.");
     }
 }

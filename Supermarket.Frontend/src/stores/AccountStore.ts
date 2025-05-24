@@ -35,11 +35,6 @@ export const useAccountStore = defineStore(Stores.Account, () => {
         console.error(error.response.data.message);
       })
   }
-  
-  // async function getXsrfToken(): Promise<void> {
-  //   await axios.get(Endpoints.XsrfToken)
-  //       .catch(error => console.log(error));
-  // }
 
   return {
     isLoggedIn,
