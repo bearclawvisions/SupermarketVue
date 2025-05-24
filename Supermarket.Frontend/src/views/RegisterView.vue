@@ -12,6 +12,7 @@ import axios from '@/api/axios.ts';
 import type { ToastHelper } from '@/composables/toastHelper.ts'
 import type { ErrorResponse, StringResponse } from '@/types/Responses.ts'
 import type { RegisterModel } from '@/types/Models.ts'
+import {Endpoints} from "@/enums/Endpoints.ts";
 
 const toastHelper = inject('toastHelper') as ToastHelper;
 
@@ -71,7 +72,7 @@ const registerResolver = ({ values }: {values: any}) => {
 
 const onRegisterFormSubmit = async ({ valid, values }: { valid: boolean, values: any }) => {
   if (valid) {
-    await axios.post('/api/AppUser/Register', values as RegisterModel)
+    await axios.post(Endpoints.Register, values as RegisterModel)
       .then((result: StringResponse) => {
         hasRegistered.value = true;
         toastHelper.displayInfo(result.data);

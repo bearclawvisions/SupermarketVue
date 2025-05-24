@@ -1,19 +1,20 @@
 ﻿<script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import { Menubar } from 'primevue'
-import { ref } from 'vue'
-import { useAccountStore } from '@/stores/AccountStore.ts'
+import { RouterLink } from 'vue-router';
+import { Menubar, TieredMenu, Button } from 'primevue';
+import { ref } from 'vue';
+import { useAccountStore } from '@/stores/AccountStore.ts';
+import {Routes} from "@/enums/Routes.ts";
 
 const menuItems = ref([
   {
     label: 'Home',
     icon: 'pi pi-home',
-    route: '/',
+    route: Routes.Home,
   },
   {
     label: 'Shop',
     icon: 'pi pi-shop',
-    route: '/shop',
+    route: Routes.Shop,
   },
   {
     label: 'Business information',
@@ -21,11 +22,11 @@ const menuItems = ref([
     items: [
       {
         label: 'About',
-        route: '/about'
+        route: Routes.About,
       },
       {
         label: 'Privacy',
-        route: '/privacy'
+        route: Routes.Privacy,
       }
     ]
   },
@@ -43,7 +44,27 @@ const menuItems = ref([
       }
     ]
   }
-])
+]);
+
+const accountMenu = ref();
+const account = ref([
+  {
+    label: 'Profile',
+    icon: 'pi pi-user',
+    route: Routes.Profile,
+  },
+  {
+    label: 'Logout',
+    icon: 'pi pi-sign-out',
+    command: async () => {
+      await accountStore.logOut();
+    }
+  },
+]);
+
+const toggle = (event: Event) => {
+  accountMenu.value.toggle(event);
+};
 
 const accountStore = useAccountStore()
 </script>
@@ -84,12 +105,13 @@ const accountStore = useAccountStore()
 
       <template #end>
         <div v-if="accountStore.isLoggedIn">
-          <span>placeholder - account</span>
+          <Button type="button" label="Account" @click="toggle" aria-haspopup="true" aria-controls="overlay_account_menu" />
+          <TieredMenu ref="accountMenu" id="overlay_account_menu" :model="account" popup />
         </div>
         <div v-else>
-          <RouterLink to="/login">Log in</RouterLink>
+          <RouterLink :to="Routes.Login">Log in</RouterLink>
           <span> / </span>
-          <RouterLink to="/register">Register</RouterLink>
+          <RouterLink :to="Routes.Register">Register</RouterLink>
         </div>
       </template>
     </Menubar>

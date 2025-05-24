@@ -12,6 +12,9 @@ import type { ToastHelper } from '@/composables/toastHelper.ts'
 import Password from 'primevue/password'
 import Button from 'primevue/button'
 import { useAccountStore } from '@/stores/AccountStore'
+import router from "@/router";
+import {Routes} from "@/enums/Routes.ts";
+import {Endpoints} from "@/enums/Endpoints.ts";
 
 const toastHelper = inject('toastHelper') as ToastHelper
 const accountStore = useAccountStore();
@@ -22,26 +25,27 @@ const loginFormValues = ref<LoginModel>({
 })
 
 const registerResolver = ({ values }: { values: any }) => {
-  const errors: Record<string, { message: string }[]> = {}
+  const errors: Record<string, { message: string }[]> = {};
 
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
-  if (!values.email) errors.email = [{ message: 'Username is required.' }]
-  if (!emailRegex.test(values.email)) errors.email = [{ message: 'Please enter a valid email address.' }]
-  if (!values.password) errors.password = [{ message: 'Please enter a password.' }]
+  if (!values.email) errors.email = [{ message: 'Username is required.' }];
+  if (!emailRegex.test(values.email)) errors.email = [{ message: 'Please enter a valid email address.' }];
+  if (!values.password) errors.password = [{ message: 'Please enter a password.' }];
 
-  return { values, errors }
+  return { values, errors };
 }
 
 const onLoginFormSubmit = async ({ valid, values }: { valid: boolean, values: any }) => {
   if (valid) {
-    await axios.post('/api/AppUser/Login', values as RegisterModel)
+    await axios.post(Endpoints.Login, values as RegisterModel)
       .then((result: StringResponse) => {
         accountStore.logIn();
         toastHelper.displayInfo(result.data);
+        router.push(Routes.Home);
       })
       .catch((error: ErrorResponse) => {
         toastHelper.displayError(error.response.data.message);
-      })
+      });
   }
 }
 </script>
@@ -82,7 +86,7 @@ const onLoginFormSubmit = async ({ valid, values }: { valid: boolean, values: an
 
       <template #footer>
         <p>Or
-          <RouterLink to="/register" class="clickable-link"> register</RouterLink>
+          <RouterLink :to=Routes.Register class="clickable-link"> register</RouterLink>
           for a new account.
         </p>
       </template>

@@ -14,20 +14,12 @@ onBeforeMount(async () => {
   await axios.get("/api/AppUser/GetXsrfToken")
     .catch(error => console.log(error));
 
-  await axios.get('/api/AppUser/AuthenticateUser')
-    .then((response: StringResponse) => {
-      accountStore.logIn();
-    })
-    .catch((error: ErrorResponse) => {
-      console.error(error.response.data.message);
-    })
+  await accountStore.checkIfLoggedIn();
 });
 
 onMounted(async () => {
   const toastHelper = new ToastHelper(toast);
   provide('toastHelper', toastHelper);
-
-  // await accountStore.checkIfLoggedIn();
 })
 
 </script>

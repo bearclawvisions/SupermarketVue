@@ -2,22 +2,31 @@
 import { defineStore } from 'pinia'
 import axios from '@/api/axios.ts'
 import type { ErrorResponse, StringResponse } from '@/types/Responses.ts'
+import {Endpoints} from "@/enums/Endpoints.ts";
+import {Stores} from "@/enums/Stores.ts";
 
-export const useAccountStore = defineStore('account', () => {
+export const useAccountStore = defineStore(Stores.Account, () => {
   const isLoggedIn = ref(false);
 
   function logIn(): void {
     isLoggedIn.value = true;
   }
 
-  function logOut(): void {
-    isLoggedIn.value = false;
+  async function logOut(): Promise<void> {
+    await axios.post(Endpoints.Logout)
+      .then((response: StringResponse) => {
+        isLoggedIn.value = false;
+      })
+      .catch((error: ErrorResponse) => {
+        console.error(error.response.data.message);
+      })
   }
 
   async function checkIfLoggedIn(): Promise<void> {
-    await axios.get('api/AppUser/AuthenticateUser')
+    await axios.get(Endpoints.AuthenticateUser)
       .then((response: StringResponse) => {
-        logIn();
+        if (response.data === 'Authenticated') logIn();
+        if (response.data === 'Not authenticated') return;
       })
       .catch((error: ErrorResponse) => {
         console.error(error.response.data.message);

@@ -54,7 +54,7 @@ public class AppUserController : BaseController
         // var user = await _userManager.GetUserAsync(User);
         if (user == null)
         {
-            return Unauthorized();
+            return Ok("Not authenticated");
         }
 
         return Ok("Authenticated");
@@ -62,7 +62,7 @@ public class AppUserController : BaseController
     
     [AllowAnonymous]
     [RequireAntiforgeryToken]
-    [HttpPost("Register")]
+    [HttpPost(nameof(Register))]
     public async Task<IActionResult> Register([FromBody] RegisterDto user)
     {
         var result =  await _appUserService.CreateNewUser(user);
@@ -75,9 +75,11 @@ public class AppUserController : BaseController
         return Ok(result);
     }
 
-    [HttpPost("Logout")]
+    [HttpPost(nameof(Logout))]
     public IActionResult Logout()
     {
+        var test = _signInManager.SignOutAsync();
+        
         return Ok();
     }
 }
