@@ -62,6 +62,10 @@ public class AppAppUserService : IAppUserService
         if (!result)
             throw new Exception("Password incorrect");
 
+        // update last login
+        dbUser.LastLogin = DateTime.UtcNow;
+        await _userManager.UpdateAsync(dbUser);
+
         return dbUser;
     }
 
