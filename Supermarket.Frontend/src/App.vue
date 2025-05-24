@@ -12,8 +12,7 @@ const accountStore = useAccountStore();
 const toast = useToast();
 
 onBeforeMount(async () => {
-  // await axios.get(Endpoints.XsrfToken)
-  //   .catch(error => console.log(error));
+  
 
   await accountStore.checkIfLoggedIn();
 });

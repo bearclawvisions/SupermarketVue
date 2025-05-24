@@ -18,6 +18,14 @@ public class AntiForgeryTokenHandler
         // Only validate for POST requests with form content
         if (HttpMethods.IsPost(context.Request.Method))
         {
+            // Skip validation for login and logout endpoints
+            var path = context.Request.Path.Value?.ToLower();
+            if (path != null && (path.EndsWith("/login") || path.EndsWith("/logout")))
+            {
+                await _next(context);
+                return;
+            }
+
             // Check if antiforgery validation has already been performed
             var antiForgeryFeature = context.Features.Get<IAntiforgeryValidationFeature>();
             if (antiForgeryFeature?.IsValid == false)
