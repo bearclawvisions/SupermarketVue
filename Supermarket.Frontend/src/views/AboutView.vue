@@ -4,28 +4,28 @@ import {ref} from "vue";
 
 const teamMembers = ref([
   {
-    id: 'NK-772-H',
+    id: 'NV-772-H',
     name: 'Haruto Nakamura',
     role: 'Facility Director (Aug-Class 2)',
-    // photo: '/images/team/haruto.jpg'
+    photo: 'src/assets/haruto.png'
   },
   {
-    id: 'NK-985-N',
+    id: 'NV-985-N',
     name: 'Naomi Tanaka',
     role: 'Hydroponics Specialist',
-    // photo: '/images/team/naomi.jpg'
+    photo: 'src/assets/naomi.png'
   },
   {
-    id: 'NK-440-R',
+    id: 'NV-440-R',
     name: 'RK-7 "Riku"',
     role: 'Security & Compliance',
-    // photo: '/images/team/rk7.jpg'
+    photo: 'src/assets/riku.png'
   },
   {
-    id: 'NK-621-A',
+    id: 'NV-621-A',
     name: 'Akira Yoshida',
     role: 'Synthetic Food Engineer',
-    // photo: '/images/team/akira.jpg'
+    photo: 'src/assets/akira.png'
   }
 ]);
 
@@ -36,13 +36,12 @@ const teamMembers = ref([
     <Panel>
       <template #header>
         <div>
-          <span class="text-3xl font-semibold text-cyan-400 mb-4">About Neo-Vision Food Cude</span>
+          <span class="text-3xl font-semibold text-cyan-400 mb-4">About Neo-Vision Food Cube</span>
           <p class="text-sm text-gray-400 italic">Our secure nutrition facility located in Sector 7, Level B3 of the Megastructure</p>
         </div>
       </template>
       
       <template #default>
-
         <section class="mb-8">
           <h2 class="text-2xl font-semibold text-cyan-400 mb-4">Our History</h2>
           <p class="mb-4">
@@ -87,8 +86,8 @@ const teamMembers = ref([
           </p>
           <div class="flex flex-wrap justify-center gap-6 mt-6">
             <div class="text-center" v-for="member in teamMembers" :key="member.id">
-              <div class="w-32 h-32 rounded-full bg-gray-800 mx-auto mb-2 overflow-hidden border border-cyan-700">
-<!--                <img :src="member.photo" :alt="member.name" class="w-full h-full object-cover filter saturate-50">-->
+              <div class="w-30 h-50 rounded-2xl bg-gray-800 mx-auto mb-2 overflow-hidden border border-cyan-700">
+                <img :src="member.photo" :alt="member.name" class="w-full h-full object-cover filter saturate-50">
               </div>
               <h3 class="font-medium">{{ member.name }}</h3>
               <p class="text-sm text-gray-400">{{ member.role }}</p>
@@ -126,7 +125,6 @@ const teamMembers = ref([
             </div>
           </div>
         </section>
-
       </template>
       
     </Panel>
