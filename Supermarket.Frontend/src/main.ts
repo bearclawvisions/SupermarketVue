@@ -19,7 +19,10 @@ app.use(PrimeVue, {
       darkModeSelector: 'system',
       cssLayer: false,
     }
-  } 
+  },
+  // csp: {
+  //   nonce: '...'
+  // }
 });
 
 app.use(createPinia());

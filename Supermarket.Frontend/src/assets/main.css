@@ -2,7 +2,7 @@
 @import 'primeicons/primeicons.css';
 
 .shell-wrapper {
-    @apply flex flex-col h-screen justify-between;
+    @apply flex flex-col h-screen justify-between bg-[url('@/assets/mainBackground.png')] bg-cover bg-slate-600 bg-blend-overlay;
 }
 
 .basic-container {
