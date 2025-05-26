@@ -16,57 +16,64 @@ import Panel from 'primevue/panel';
       <template #default>
         <div class="large-text-content">
           Welcome to our Supermarket App. We are committed to protecting your privacy and providing a safe and
-          secure experience when using our services. This Privacy Policy
-          explains how we collect, use, and safeguard your information.
+          secure experience when using our services. This Privacy Policy explains how we collect, use, and safeguard your information.
         </div>
 
         <div class="large-text-content">
           <h3 class="large-text-heading">Personal Information</h3>
-          - Name, email address, and phone number for account creation
-          - Delivery address (if applicable)
-          - Payment information (processed securely through our payment providers)
+          <ul>
+            <li>- Name, email address, and phone number for account creation</li>
+            <li>- Delivery address (if applicable)</li>
+            <li>- Payment information (processed securely through our payment providers)</li>
+          </ul>
         </div>
 
         <div class="large-text-content">
           <h3 class="large-text-heading">Usage Information</h3>
-          - Shopping habits and purchase history
-          - App usage statistics and interactions
-          - Device information (device type, operating system, app version)
-          - Location data (with your permission, for store locator features)
+          <ul>
+            <li>- Shopping habits and purchase history</li>
+            <li>- App usage statistics and interactions</li>
+            <li>- Device information (device type, operating system, app version)</li>
+            <li>- Location data (with your permission, for store locator features)</li>
+          </ul>
         </div>
 
         <div class="large-text-content">
           <h3 class="large-text-heading">How We Use Your Information</h3>
-          - To process your orders and transactions
-          - To provide personalized shopping recommendations
-          - To improve our services and app functionality
-          - To communicate with you about orders, promotions, and updates
-          - To manage our loyalty program and rewards
+          <ul>
+            <li>- To process your orders and transactions</li>
+            <li>- To provide personalized shopping recommendations</li>
+            <li>- To improve our services and app functionality</li>
+            <li>- To communicate with you about orders, promotions, and updates</li>
+            <li>- To manage our loyalty program and rewards</li>
+          </ul>
         </div>
 
         <div class="large-text-content">
           <h3 class="large-text-heading">Data Sharing and Disclosure</h3>
           We may share your information with:
-          - Service providers who help us operate our business
-          - Payment processors to complete transactions
-          - Delivery partners (if applicable)
-          - Legal authorities when required by law
+          <ul>
+            <li>- Service providers who help us operate our business</li>
+            <li>- Payment processors to complete transactions</li>
+            <li>- Delivery partners (if applicable)</li>
+            <li>- Legal authorities when required by law</li>
+          </ul>
         </div>
 
         <div class="large-text-content">
           <h3 class="large-text-heading">Your Choices and Rights</h3>
-          We do not sell your personal information to third parties.
-          You have the right to:
-          - Access, correct, or delete your personal information
-          - Opt out of marketing communications
-          - Disable location tracking
-          - Request a copy of your data
+          We do not sell your personal information to third parties. You have the right to:
+          <ul>
+            <li>- Access, correct, or delete your personal information</li>
+            <li>- Opt out of marketing communications</li>
+            <li>- Disable location tracking</li>
+            <li>- Request a copy of your data</li>
+          </ul>
         </div>
 
         <div class="large-text-content">
           <h3 class="large-text-heading">Data Security</h3>
-          We implement appropriate technical and organizational measures to protect your personal information against unauthorized access,
-          alteration, disclosure, or destruction.
+          We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
         </div>
 
         <div class="large-text-content">
@@ -83,7 +90,3 @@ import Panel from 'primevue/panel';
     </Panel>
   </div>
 </template>
-
-<style scoped>
-
-</style>
