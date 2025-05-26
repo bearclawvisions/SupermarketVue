@@ -70,7 +70,7 @@ const accountStore = useAccountStore()
 </script>
 
 <template>
-  <div class="card">
+  <div class="navbar">
     <Menubar :model="menuItems">
       <template #start>
         <span>

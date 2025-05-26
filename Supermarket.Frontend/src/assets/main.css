@@ -2,15 +2,19 @@
 @import 'primeicons/primeicons.css';
 
 .shell-wrapper {
-    @apply flex flex-col h-screen justify-between bg-[url('@/assets/mainBackground.png')] bg-cover bg-slate-600 bg-blend-overlay;
+    @apply flex flex-col min-h-screen justify-between bg-[url('@/assets/mainBackground.png')] bg-cover bg-fixed bg-slate-600 bg-blend-overlay items-center;
 }
 
 .basic-container {
     @apply flex flex-col justify-center items-center w-full p-3 leading-tight;
 }
 
+.navbar {
+    @apply w-full;
+}
+
 .footer {
-    @apply leading-tight;
+    @apply leading-tight w-full;
 }
 
 .basic-form-item {
@@ -19,4 +23,16 @@
 
 .clickable-link {
     @apply underline hover:text-blue-700;
+}
+
+.large-text-container {
+    @apply flex flex-col justify-center items-center w-[80%] p-12 leading-tight;
+}
+
+.large-text-heading {
+    @apply font-bold py-3;
+}
+
+.large-text-content {
+    @apply py-4;
 }
