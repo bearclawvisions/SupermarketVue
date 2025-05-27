@@ -1,0 +1,25 @@
+<script setup lang="ts">
+import Panel from 'primevue/panel';
+</script>
+
+<template>
+  <div class="basic-container">
+    <Panel>
+      <template #header>
+        <div class="basic-container-title">
+          <template v-if="$slots.icon">
+            <slot name="icon"/>&nbsp;
+          </template>
+          <slot name="title"/>
+        </div>
+      </template>
+      <template #default>
+        <slot name="body"/>
+      </template>
+    </Panel>
+  </div>
+</template>
+
+<style scoped>
+
+</style>

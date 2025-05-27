@@ -7,25 +7,25 @@ const teamMembers = ref([
     id: 'NV-772-H',
     name: 'Haruto Nakamura',
     role: 'Facility Director (Aug-Class 2)',
-    photo: 'src/assets/haruto.png'
+    photo: 'src/assets/images/haruto.png'
   },
   {
     id: 'NV-985-N',
     name: 'Naomi Tanaka',
     role: 'Hydroponics Specialist',
-    photo: 'src/assets/naomi.png'
+    photo: 'src/assets/images/naomi.png'
   },
   {
     id: 'NV-440-R',
     name: 'RK-7 "Riku"',
     role: 'Security & Compliance',
-    photo: 'src/assets/riku.png'
+    photo: 'src/assets/images/riku.png'
   },
   {
     id: 'NV-621-A',
     name: 'Akira Yoshida',
     role: 'Synthetic Food Engineer',
-    photo: 'src/assets/akira.png'
+    photo: 'src/assets/images/akira.png'
   }
 ]);
 
@@ -42,7 +42,7 @@ const teamMembers = ref([
       </template>
       
       <template #default>
-        <section class="mb-8">
+        <div class="mb-8">
           <h2 class="text-2xl font-semibold text-cyan-400 mb-4">Our History</h2>
           <p class="mb-4">
             Welcome to Neo-Vision Food Cube, your authorized synthetic and organic nutrition provider since the Great Collapse of 2089.
@@ -54,9 +54,9 @@ const teamMembers = ref([
             nutrition centers not fully absorbed by the MegaCorp Conglomerate. We operate under special permit NK-42775,
             allowing us to serve citizens across all social credit tiers.
           </p>
-        </section>
+        </div>
 
-        <section class="mb-8">
+        <div class="mb-8">
           <h2 class="text-2xl font-semibold text-cyan-400 mb-4">Our Commitment</h2>
           <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-gray-900 p-4 rounded-lg border border-cyan-800">
@@ -76,9 +76,9 @@ const teamMembers = ref([
               <p>Our water reclamation system operates at 94.6% efficiency. All packaging is processed into building materials or nutrition substrate for our insect protein cultivation chambers.</p>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section class="mb-8">
+        <div class="mb-8">
           <h2 class="text-2xl font-semibold text-cyan-400 mb-4">Our Personnel</h2>
           <p class="mb-4">
             Our staff consists of both augmented specialists and natural humans, all vetted and compliance-tagged for your security.
@@ -94,9 +94,9 @@ const teamMembers = ref([
               <p class="text-xs text-cyan-600">ID: {{ member.id }}</p>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section>
+        <div>
           <h2 class="text-2xl font-semibold text-cyan-400 mb-4">Access Information</h2>
           <div class="bg-gray-900 p-6 rounded-lg border border-cyan-800">
             <div class="flex flex-col md:flex-row gap-6">
@@ -124,7 +124,7 @@ const teamMembers = ref([
               <p class="text-amber-500 text-sm">⚠ ALERT: Sector 7 air filtration operating at reduced capacity (74%). Breathing apparatus recommended for non-augmented customers.</p>
             </div>
           </div>
-        </section>
+        </div>
       </template>
       
     </Panel>

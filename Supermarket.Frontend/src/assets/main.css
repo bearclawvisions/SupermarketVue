@@ -4,7 +4,7 @@
 
 /* shell styling */
 .shell-wrapper {
-    @apply flex flex-col min-h-screen justify-between bg-[url('@/assets/mainBackground.png')] bg-cover bg-fixed bg-slate-600 bg-blend-overlay items-center;
+    @apply flex flex-col min-h-screen justify-between bg-[url('@/assets/images/mainBackground.png')] bg-cover bg-fixed bg-slate-600 bg-blend-overlay items-center;
 }
 
 /* navbar styling */

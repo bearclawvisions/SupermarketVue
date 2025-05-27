@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Panel from "primevue/panel";
 import BasicTextContainer from "@/components/containers/BasicTextContainer.vue";
 </script>
 
