@@ -1,38 +1,28 @@
 @import "tailwindcss";
 @import 'primeicons/primeicons.css';
+@import '@/assets/container-styling.css';
 
+/* shell styling */
 .shell-wrapper {
     @apply flex flex-col min-h-screen justify-between bg-[url('@/assets/mainBackground.png')] bg-cover bg-fixed bg-slate-600 bg-blend-overlay items-center;
 }
 
-.basic-container {
-    @apply flex flex-col justify-center items-center w-full p-3 leading-tight;
-}
-
+/* navbar styling */
 .navbar {
     @apply w-full;
 }
 
+/* footer styling */
 .footer {
     @apply leading-tight w-full;
 }
 
+/* form styling */
 .basic-form-item {
     @apply mb-4;
 }
 
+/* interactivity styling */
 .clickable-link {
-    @apply underline hover:text-blue-700;
-}
-
-.large-text-container {
-    @apply flex flex-col justify-center items-center w-[80%] p-12 leading-tight;
-}
-
-.large-text-heading {
-    @apply font-bold py-3;
-}
-
-.large-text-content {
-    @apply py-4;
+    @apply underline hover:text-cyan-400 font-semibold;
 }

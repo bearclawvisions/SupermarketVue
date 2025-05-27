@@ -1,0 +1,21 @@
+/* basic container styles */
+.basic-container {
+    @apply flex flex-col justify-center items-center w-full p-3 leading-tight;
+}
+
+.basic-container-title {
+    @apply text-3xl font-semibold text-cyan-400 mb-4;
+}
+
+/* large container styles */
+.large-text-container {
+    @apply flex flex-col justify-center items-center w-[80%] p-12 leading-tight;
+}
+
+.large-text-heading {
+    @apply font-bold py-3;
+}
+
+.large-text-content {
+    @apply py-4;
+}
