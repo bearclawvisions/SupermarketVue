@@ -3,6 +3,8 @@ import {ref} from "vue";
 import LargeTextContainer from "@/components/containers/LargeTextContainer.vue";
 import ParagraphContainer from "@/components/containers/ParagraphContainer.vue";
 import BlueCard from "@/components/card/BlueCard.vue";
+import PortraitContainer from "@/components/containers/PortraitContainer.vue";
+import BlueCardContainer from "@/components/containers/BlueCardContainer.vue";
 
 const teamMembers = ref([
   {
@@ -65,6 +67,7 @@ const commitments = ref([
             What began as an emergency ration distribution center has evolved into the sector's premier food acquisition hub,
             offering both corporate-approved nutrition modules and rare authentic organics.
           </p>
+          <br/>
           <p>
             Founded by the Nakamura Collective during the Resource Wars, our facility remains one of the few independent
             nutrition centers not fully absorbed by the MegaCorp Conglomerate. We operate under special permit NK-42775,
@@ -76,12 +79,7 @@ const commitments = ref([
       <ParagraphContainer>
         <template #title>Our Commitment</template>
         <template #body>
-          <div class="grid md:grid-cols-2 gap-6">
-            <BlueCard v-for="commitment in commitments">
-              <template #title>{{commitment.title}}</template>
-              <template #body>{{commitment.body}}</template>
-            </BlueCard>
-          </div>
+          <BlueCardContainer :card-info="commitments"/>
         </template>
       </ParagraphContainer>
       
@@ -90,17 +88,7 @@ const commitments = ref([
         <template #body>
           Our staff consists of both augmented specialists and natural humans, all vetted and compliance-tagged for your security.
           All food handlers undergo weekly decontamination and are certified free of prohibited genetic modifications.
-          
-          <div class="flex flex-wrap justify-center gap-6 mt-6">
-            <div class="text-center" v-for="member in teamMembers" :key="member.id">
-              <div class="w-30 h-50 rounded-2xl bg-gray-800 mx-auto mb-2 overflow-hidden border border-cyan-700">
-                <img :src="member.photo" :alt="member.name" class="w-full h-full object-cover filter saturate-50">
-              </div>
-              <h3 class="font-medium">{{ member.name }}</h3>
-              <p class="text-sm text-gray-400">{{ member.role }}</p>
-              <p class="text-xs text-cyan-600">ID: {{ member.id }}</p>
-            </div>
-          </div>
+          <PortraitContainer :portraits="teamMembers"/>
         </template>
       </ParagraphContainer>
       

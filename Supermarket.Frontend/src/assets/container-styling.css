@@ -24,6 +24,27 @@
     @apply mb-8;
 }
 
+/* Portrait container */
+.portrait-container {
+    @apply flex flex-wrap justify-center gap-6 mt-6 text-center;
+}
+
+.portrait-photo {
+    @apply w-30 h-50 rounded-2xl bg-gray-800 mx-auto mb-2 overflow-hidden border border-cyan-700;
+}
+
+.photo {
+    @apply w-full h-full object-cover;
+}
+
+.portrait-subtitle {
+    @apply text-sm text-gray-400;
+}
+
+.portrait-id {
+    @apply text-xs text-cyan-600;
+}
+
 /* card styles */
 .blue-card-container {
     @apply bg-gray-900 p-4 rounded-lg border border-cyan-800;
