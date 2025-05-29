@@ -2,9 +2,9 @@
 import {ref} from "vue";
 import LargeTextContainer from "@/components/containers/LargeTextContainer.vue";
 import ParagraphContainer from "@/components/containers/ParagraphContainer.vue";
-import BlueCard from "@/components/card/BlueCard.vue";
 import PortraitContainer from "@/components/containers/PortraitContainer.vue";
 import BlueCardContainer from "@/components/containers/BlueCardContainer.vue";
+import AccessInfoComponent from "@/components/AccessInfoComponent.vue";
 
 const teamMembers = ref([
   {
@@ -94,34 +94,7 @@ const commitments = ref([
       
       <ParagraphContainer>
         <template #title>Access Information</template>
-        <template #body>
-          <div class="bg-gray-900 p-6 rounded-lg border border-cyan-800">
-            <div class="flex flex-col md:flex-row gap-6">
-              <div class="flex-1">
-                <h3 class="text-xl font-medium text-cyan-300 mb-2">Location</h3>
-                <p>Sector 7, Level B3<br>Megastructure Block 4592<br>Neo-Tokyo District</p>
-                <h3 class="text-xl font-medium text-cyan-300 mt-4 mb-2">Operating Hours</h3>
-                <p>Cycle 1-5: 0600-2300<br>Cycle 6: 0800-2000<br>Closed during Purification Day</p>
-                <h3 class="text-xl font-medium text-cyan-300 mt-4 mb-2">Communication</h3>
-                <p>InfoNet: NT-FOODCUBE-7B3<br>EmergencyBeacon: 7B3-FC-EMERGENCY<br>Messenger Drone Dock: #FC-45921</p>
-              </div>
-              <div class="flex-1">
-                <div class="h-64 bg-gray-800 rounded-lg border border-cyan-800 overflow-hidden">
-                  <div class="w-full h-full flex items-center justify-center">
-                    <div class="text-center">
-                      <p class="text-cyan-500 mb-2">[ AUTHORIZED HOLO-MAP ]</p>
-                      <p class="text-xs text-gray-400">Scan citizen implant for navigation assistance</p>
-                      <p class="text-xs text-gray-400 mt-4">*Unauthorized reproduction of this location data is punishable under Security Act 9218-Ω</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="mt-6 pt-4 border-t border-gray-700">
-              <p class="text-amber-500 text-sm">⚠ ALERT: Sector 7 air filtration operating at reduced capacity (74%). Breathing apparatus recommended for non-augmented customers.</p>
-            </div>
-          </div>
-        </template>
+        <template #body><AccessInfoComponent/></template>
       </ParagraphContainer>
     </template>
   </LargeTextContainer>

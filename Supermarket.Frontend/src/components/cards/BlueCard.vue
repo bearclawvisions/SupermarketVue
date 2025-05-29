@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="blue-card-container">
+  <div class="blue-card">
     <div class="blue-card-title">
       <slot name="title"/>
     </div>

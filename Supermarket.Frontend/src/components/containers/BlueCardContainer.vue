@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BlueCard from "@/components/card/BlueCard.vue";
+import BlueCard from "@/components/cards/BlueCard.vue";
 import type {BlueCardInfo} from "@/types/Models.ts";
 
 defineProps({
@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="grid md:grid-cols-2 gap-6">
+  <div class="blue-card-container">
     <BlueCard v-for="info in cardInfo">
       <template #title>{{info.title}}</template>
       <template #body>{{info.body}}</template>
