@@ -3,14 +3,17 @@ import Panel from 'primevue/panel';
 </script>
 
 <template>
-  <div class="basic-container">
+  <div class="large-text-container">
     <Panel>
       <template #header>
-        <div class="basic-container-title">
+        <div class="container-title">
           <template v-if="$slots.icon">
             <slot name="icon"/>&nbsp;
           </template>
           <slot name="title"/>
+          <div class="container-subtitle">
+            <slot name="subtitle"/>
+          </div>
         </div>
       </template>
       <template #default>

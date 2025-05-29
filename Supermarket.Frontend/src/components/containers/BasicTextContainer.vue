@@ -6,7 +6,7 @@ import Panel from 'primevue/panel';
   <div class="basic-container">
     <Panel>
       <template #header>
-        <div class="basic-container-title">
+        <div class="container-title">
           <template v-if="$slots.icon">
             <slot name="icon"/>&nbsp;
           </template>

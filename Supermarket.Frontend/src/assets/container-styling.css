@@ -3,8 +3,12 @@
     @apply flex flex-col justify-center items-center w-full p-3 leading-tight;
 }
 
-.basic-container-title {
+.container-title {
     @apply text-3xl font-semibold text-cyan-400 mb-4;
+}
+
+.container-subtitle {
+    @apply text-sm text-gray-400 italic;
 }
 
 /* large container styles */
