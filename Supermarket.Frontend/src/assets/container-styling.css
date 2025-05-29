@@ -16,10 +16,10 @@
     @apply flex flex-col justify-center items-center w-[80%] p-12 leading-tight;
 }
 
-.large-text-heading {
-    @apply font-bold py-3;
+.paragraph-heading {
+    @apply text-2xl font-semibold text-cyan-400 mb-4;
 }
 
-.large-text-content {
-    @apply py-4;
+.paragraph-content {
+    @apply mb-8;
 }

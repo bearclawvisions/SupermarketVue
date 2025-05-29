@@ -44,7 +44,7 @@ const teamMembers = ref([
       <template #default>
         <div class="mb-8">
           <h2 class="text-2xl font-semibold text-cyan-400 mb-4">Our History</h2>
-          <p class="mb-4">
+          <p>
             Welcome to Neo-Vision Food Cube, your authorized synthetic and organic nutrition provider since the Great Collapse of 2089.
             What began as an emergency ration distribution center has evolved into the sector's premier food acquisition hub,
             offering both corporate-approved nutrition modules and rare authentic organics.
