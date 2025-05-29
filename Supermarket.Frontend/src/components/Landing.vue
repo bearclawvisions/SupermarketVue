@@ -4,21 +4,13 @@ import BasicTextContainer from "@/components/containers/BasicTextContainer.vue";
 
 <template>
   <BasicTextContainer>
-    <template #icon>
-      <i class="pi pi-shopping-bag"/>
-    </template>
-    <template #title>
-      Supermarket
-    </template>
-    <template #body>
-      The place that has all your daily needs!
-    </template>
+    <template #icon><i class="pi pi-shopping-bag"/></template>
+    <template #title>Neo-Vision Food Cube</template>
+    <template #body>The place that has all your daily needs!</template>
   </BasicTextContainer>
-  
+
   <BasicTextContainer>
-    <template #title>
-      Supermarket
-    </template>
+    <template #title>Supermarket</template>
     <template #body>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
       magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
@@ -27,5 +19,4 @@ import BasicTextContainer from "@/components/containers/BasicTextContainer.vue";
       laborum.
     </template>
   </BasicTextContainer>
-  
 </template>
