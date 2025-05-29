@@ -2,6 +2,7 @@
 import {ref} from "vue";
 import LargeTextContainer from "@/components/containers/LargeTextContainer.vue";
 import ParagraphContainer from "@/components/containers/ParagraphContainer.vue";
+import BlueCard from "@/components/card/BlueCard.vue";
 
 const teamMembers = ref([
   {
@@ -30,6 +31,24 @@ const teamMembers = ref([
   }
 ]);
 
+const commitments = ref([
+  {
+    title: 'Clean Sustenance',
+    body: 'All our lab-grown products are certified 98.7% toxin-free, exceeding government standards by 3.2%. Our underground hydroponics lab produces rare authentic vegetables with minimal radiation signatures.',
+  },
+  {
+    title: 'Community Shield',
+    body: 'Our reinforced walls provide refuge during routine air quality alerts and civil compliance sweeps. We maintain emergency rations for registered neighborhood residents.',
+  },
+  {
+    title: 'Accessible Pricing',
+    body: 'We accept all standard credits, corporation scrip, and approved cryptocurrencies. Multi-tier pricing ensures nutrition access across social strata in accordance with Ordinance 5529-B.',
+  },
+  {
+    title: 'Resource Efficiency',
+    body: 'Our water reclamation system operates at 94.6% efficiency. All packaging is processed into building materials or nutrition substrate for our insect protein cultivation chambers.',
+  }
+]);
 </script>
 
 <template>
@@ -58,22 +77,10 @@ const teamMembers = ref([
         <template #title>Our Commitment</template>
         <template #body>
           <div class="grid md:grid-cols-2 gap-6">
-            <div class="bg-gray-900 p-4 rounded-lg border border-cyan-800">
-              <h3 class="text-xl font-medium text-cyan-300 mb-2">Clean Sustenance</h3>
-              <p>All our lab-grown products are certified 98.7% toxin-free, exceeding government standards by 3.2%. Our underground hydroponics lab produces rare authentic vegetables with minimal radiation signatures.</p>
-            </div>
-            <div class="bg-gray-900 p-4 rounded-lg border border-cyan-800">
-              <h3 class="text-xl font-medium text-cyan-300 mb-2">Community Shield</h3>
-              <p>Our reinforced walls provide refuge during routine air quality alerts and civil compliance sweeps. We maintain emergency rations for registered neighborhood residents.</p>
-            </div>
-            <div class="bg-gray-900 p-4 rounded-lg border border-cyan-800">
-              <h3 class="text-xl font-medium text-cyan-300 mb-2">Accessible Pricing</h3>
-              <p>We accept all standard credits, corporation scrip, and approved cryptocurrencies. Multi-tier pricing ensures nutrition access across social strata in accordance with Ordinance 5529-B.</p>
-            </div>
-            <div class="bg-gray-900 p-4 rounded-lg border border-cyan-800">
-              <h3 class="text-xl font-medium text-cyan-300 mb-2">Resource Efficiency</h3>
-              <p>Our water reclamation system operates at 94.6% efficiency. All packaging is processed into building materials or nutrition substrate for our insect protein cultivation chambers.</p>
-            </div>
+            <BlueCard v-for="commitment in commitments">
+              <template #title>{{commitment.title}}</template>
+              <template #body>{{commitment.body}}</template>
+            </BlueCard>
           </div>
         </template>
       </ParagraphContainer>

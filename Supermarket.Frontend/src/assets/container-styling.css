@@ -23,3 +23,12 @@
 .paragraph-content {
     @apply mb-8;
 }
+
+/* card styles */
+.blue-card-container {
+    @apply bg-gray-900 p-4 rounded-lg border border-cyan-800;
+}
+
+.blue-card-title {
+    @apply text-xl font-medium text-cyan-300 mb-2;
+}
