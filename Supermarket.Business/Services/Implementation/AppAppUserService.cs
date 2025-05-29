@@ -3,6 +3,7 @@ using Supermarket.Business.CustomExceptions;
 using Supermarket.Business.Services.Interface;
 using Supermarket.Domain.Dto.AppUser;
 using Supermarket.Domain.Entities;
+using Supermarket.Domain.Enums;
 using System.Security.Claims;
 
 namespace Supermarket.Business.Services.Implementation;
@@ -74,5 +75,15 @@ public class AppAppUserService : IAppUserService
         var dbUser = await _userManager.GetUserAsync(user);
         
         return dbUser ?? null;
+    }
+    
+    public async Task<List<int>> GetUserRoles(AppUser appUser)
+    {
+        var roles = await _userManager.GetRolesAsync(appUser);
+        
+        return roles
+            .Select(role => Enum.Parse<ApplicationRole>(role))
+            .Cast<int>()
+            .ToList();
     }
 }

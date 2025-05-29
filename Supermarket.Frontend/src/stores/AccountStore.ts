@@ -6,9 +6,12 @@ import {Endpoints} from "@/enums/Endpoints.ts";
 import {Stores} from "@/enums/Stores.ts";
 import router from "@/router";
 import {Routes} from "@/enums/Routes.ts";
+import {UserRoles} from "@/enums/UserRoles.ts";
 
 export const useAccountStore = defineStore(Stores.Account, () => {
   const isLoggedIn = ref(false);
+  const isAdmin = ref(false);
+  const isCustomer = ref(false);
 
   function logIn(): void {
     isLoggedIn.value = true;
@@ -35,11 +38,19 @@ export const useAccountStore = defineStore(Stores.Account, () => {
         console.error(error.response.data.message);
       })
   }
+  
+  async function setRole(roles: UserRoles[]): Promise<void> {
+    isAdmin.value = roles.includes(UserRoles.Admin);
+    isCustomer.value = roles.includes(UserRoles.Customer);
+  }
 
   return {
     isLoggedIn,
+    isAdmin,
+    isCustomer,
     logIn,
     logOut,
-    checkIfLoggedIn
+    checkIfLoggedIn,
+    setRole,
   }
 });

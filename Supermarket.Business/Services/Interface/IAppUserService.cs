@@ -9,4 +9,5 @@ public interface IAppUserService
     Task<string> CreateNewUser(RegisterDto newUser);
     Task<AppUser> GetUserForLogin(LoginDto newUser);
     Task<AppUser?> AuthenticateUser(ClaimsPrincipal user);
+    Task<List<int>> GetUserRoles(AppUser user);
 }

@@ -10,3 +10,7 @@
 export interface StringResponse {
   data: string;
 }
+
+export interface ListResponse<T> {
+  data: T[];
+}

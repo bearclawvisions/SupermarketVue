@@ -7,7 +7,7 @@ import { Message } from 'primevue'
 import { inject, ref } from 'vue'
 import type { LoginModel, RegisterModel } from '@/types/Models.ts'
 import axios from '@/api/axios.ts'
-import type { ErrorResponse, StringResponse } from '@/types/Responses.ts'
+import type {ErrorResponse, ListResponse, StringResponse} from '@/types/Responses.ts'
 import type { ToastHelper } from '@/composables/toastHelper.ts'
 import Password from 'primevue/password'
 import Button from 'primevue/button'
@@ -15,6 +15,7 @@ import { useAccountStore } from '@/stores/AccountStore'
 import router from "@/router";
 import {Routes} from "@/enums/Routes.ts";
 import {Endpoints} from "@/enums/Endpoints.ts";
+import type {UserRoles} from "@/enums/UserRoles.ts";
 
 const toastHelper = inject('toastHelper') as ToastHelper
 const accountStore = useAccountStore();
@@ -38,9 +39,11 @@ const registerResolver = ({ values }: { values: any }) => {
 const onLoginFormSubmit = async ({ valid, values }: { valid: boolean, values: any }) => {
   if (valid) {
     await axios.post(Endpoints.Login, values as RegisterModel)
-      .then((result: StringResponse) => {
+      .then((result: ListResponse<UserRoles>) => {
+        debugger;
         accountStore.logIn();
-        toastHelper.displayInfo(result.data);
+        accountStore.setRole(result.data);
+        toastHelper.displayInfo("Successfully logged in.");
         router.push(Routes.Home);
       })
       .catch((error: ErrorResponse) => {

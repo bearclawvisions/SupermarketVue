@@ -36,14 +36,15 @@ public class AppUserController : BaseController
         {
             var appUser = await _appUserService.GetUserForLogin(userLogin);
             await _signInManager.SignInAsync(appUser, false); // todo op true zetten
+            
+            var userRoles = await _appUserService.GetUserRoles(appUser);
+            
+            return Ok(userRoles);
         }
         catch (Exception ex)
         {
             return BadRequest(new { message = ex.Message });
         }
-        
-
-        return Ok("Successfully logged in.");
     }
     
     [AllowAnonymous]
