@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import Panel from 'primevue/panel';
 import {ref} from "vue";
+import LargeTextContainer from "@/components/containers/LargeTextContainer.vue";
+import ParagraphContainer from "@/components/containers/ParagraphContainer.vue";
 
 const teamMembers = ref([
   {
@@ -32,18 +33,14 @@ const teamMembers = ref([
 </script>
 
 <template>
-  <div class="large-text-container">
-    <Panel>
-      <template #header>
-        <div>
-          <span class="text-3xl font-semibold text-cyan-400 mb-4">About Neo-Vision Food Cube</span>
-          <p class="text-sm text-gray-400 italic">Our secure nutrition facility located in Sector 7, Level B3 of the Megastructure</p>
-        </div>
-      </template>
-      
-      <template #default>
-        <div class="mb-8">
-          <h2 class="text-2xl font-semibold text-cyan-400 mb-4">Our History</h2>
+  <LargeTextContainer>
+    <template #title>About Neo-Vision Food Cube</template>
+    <template #subtitle>Our secure nutrition facility located in Sector 7, Level B3 of the Megastructure</template>
+    
+    <template #body>
+      <ParagraphContainer>
+        <template #title>Our History</template>
+        <template #body>
           <p>
             Welcome to Neo-Vision Food Cube, your authorized synthetic and organic nutrition provider since the Great Collapse of 2089.
             What began as an emergency ration distribution center has evolved into the sector's premier food acquisition hub,
@@ -54,10 +51,12 @@ const teamMembers = ref([
             nutrition centers not fully absorbed by the MegaCorp Conglomerate. We operate under special permit NK-42775,
             allowing us to serve citizens across all social credit tiers.
           </p>
-        </div>
+        </template>
+      </ParagraphContainer>
 
-        <div class="mb-8">
-          <h2 class="text-2xl font-semibold text-cyan-400 mb-4">Our Commitment</h2>
+      <ParagraphContainer>
+        <template #title>Our Commitment</template>
+        <template #body>
           <div class="grid md:grid-cols-2 gap-6">
             <div class="bg-gray-900 p-4 rounded-lg border border-cyan-800">
               <h3 class="text-xl font-medium text-cyan-300 mb-2">Clean Sustenance</h3>
@@ -76,14 +75,15 @@ const teamMembers = ref([
               <p>Our water reclamation system operates at 94.6% efficiency. All packaging is processed into building materials or nutrition substrate for our insect protein cultivation chambers.</p>
             </div>
           </div>
-        </div>
-
-        <div class="mb-8">
-          <h2 class="text-2xl font-semibold text-cyan-400 mb-4">Our Personnel</h2>
-          <p class="mb-4">
-            Our staff consists of both augmented specialists and natural humans, all vetted and compliance-tagged for your security.
-            All food handlers undergo weekly decontamination and are certified free of prohibited genetic modifications.
-          </p>
+        </template>
+      </ParagraphContainer>
+      
+      <ParagraphContainer>
+        <template #title>Our Personnel</template>
+        <template #body>
+          Our staff consists of both augmented specialists and natural humans, all vetted and compliance-tagged for your security.
+          All food handlers undergo weekly decontamination and are certified free of prohibited genetic modifications.
+          
           <div class="flex flex-wrap justify-center gap-6 mt-6">
             <div class="text-center" v-for="member in teamMembers" :key="member.id">
               <div class="w-30 h-50 rounded-2xl bg-gray-800 mx-auto mb-2 overflow-hidden border border-cyan-700">
@@ -94,10 +94,12 @@ const teamMembers = ref([
               <p class="text-xs text-cyan-600">ID: {{ member.id }}</p>
             </div>
           </div>
-        </div>
-
-        <div>
-          <h2 class="text-2xl font-semibold text-cyan-400 mb-4">Access Information</h2>
+        </template>
+      </ParagraphContainer>
+      
+      <ParagraphContainer>
+        <template #title>Access Information</template>
+        <template #body>
           <div class="bg-gray-900 p-6 rounded-lg border border-cyan-800">
             <div class="flex flex-col md:flex-row gap-6">
               <div class="flex-1">
@@ -124,9 +126,8 @@ const teamMembers = ref([
               <p class="text-amber-500 text-sm">⚠ ALERT: Sector 7 air filtration operating at reduced capacity (74%). Breathing apparatus recommended for non-augmented customers.</p>
             </div>
           </div>
-        </div>
-      </template>
-      
-    </Panel>
-  </div>
+        </template>
+      </ParagraphContainer>
+    </template>
+  </LargeTextContainer>
 </template>
