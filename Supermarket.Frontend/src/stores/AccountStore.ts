@@ -21,6 +21,7 @@ export const useAccountStore = defineStore(Stores.Account, () => {
     await axios.post(Endpoints.Logout)
       .then((response: StringResponse) => {
         isLoggedIn.value = false;
+        resetRoles();
         router.push(Routes.Home);
       })
       .catch((error: ErrorResponse) => {
@@ -39,9 +40,14 @@ export const useAccountStore = defineStore(Stores.Account, () => {
       })
   }
   
-  async function setRole(roles: UserRoles[]): Promise<void> {
+  function setRole(roles: UserRoles[]): void {
     isAdmin.value = roles.includes(UserRoles.Admin);
     isCustomer.value = roles.includes(UserRoles.Customer);
+  }
+  
+  function resetRoles(): void {
+    isAdmin.value = false;
+    isCustomer.value = false; 
   }
 
   return {

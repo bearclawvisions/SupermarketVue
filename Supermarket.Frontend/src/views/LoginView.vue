@@ -40,7 +40,6 @@ const onLoginFormSubmit = async ({ valid, values }: { valid: boolean, values: an
   if (valid) {
     await axios.post(Endpoints.Login, values as RegisterModel)
       .then((result: ListResponse<UserRoles>) => {
-        debugger;
         accountStore.logIn();
         accountStore.setRole(result.data);
         toastHelper.displayInfo("Successfully logged in.");
