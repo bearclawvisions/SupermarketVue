@@ -1,6 +1,7 @@
 /* basic container styles */
 .basic-container {
     @apply flex flex-col justify-center items-center max-w-[80%] p-3 leading-tight;
+    @apply lg:max-w-[900px];
 }
 
 .container-title {
@@ -13,7 +14,8 @@
 
 /* large container styles */
 .large-text-container {
-    @apply flex flex-col justify-center items-center w-[80%] p-12 leading-tight;
+    @apply flex flex-col justify-center items-center w-full p-8 leading-tight;
+    @apply lg:max-w-[900px];
 }
 
 .paragraph-heading {
@@ -43,7 +45,7 @@
 
 /* Holomap styling */
 .holomap-container {
-    @apply h-64 bg-gray-800 rounded-lg mt-4 border border-cyan-800 overflow-hidden w-full h-full flex items-center justify-center text-center;
+    @apply bg-gray-800 rounded-lg mt-4 border border-cyan-800 overflow-hidden w-full h-full flex items-center justify-center text-center;
 }
 
 .holomap-title {
