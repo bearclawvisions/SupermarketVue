@@ -10,21 +10,6 @@ const api : AxiosInstance = axios.create({
   },
 });
 
-// // Global error handler
-// api.interceptors.response.use(
-//   (response) => response,
-//   (error) => {
-//     if (error.response) {
-//       const { statusCode, message } = error.response.data;
-//       // toastHelper.displayInfo(message, 5000)
-//     } else {
-//       // toastHelper.displayInfo("Something went wrong...", 5000);
-//     }
-//     return Promise.reject(error);
-//   }
-// );
-
-
 api.interceptors.request.use(
   (config) => {
     const csrfToken = getCookie("X-XSRF-TOKEN");

@@ -1,7 +1,7 @@
-﻿import { ref } from 'vue'
-import { defineStore } from 'pinia'
-import axios from '@/api/axios.ts'
-import type { ErrorResponse, StringResponse } from '@/types/Responses.ts'
+﻿import { ref } from 'vue';
+import { defineStore } from 'pinia';
+import axios from '@/api/axios.ts';
+import type { ErrorResponse, StringResponse } from '@/types/Responses.ts';
 import {Endpoints} from "@/enums/Endpoints.ts";
 import {Stores} from "@/enums/Stores.ts";
 import router from "@/router";

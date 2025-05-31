@@ -41,16 +41,17 @@
     @apply mt-10 pt-4 border-t border-gray-700 text-amber-500 text-sm;
 }
 
+/* Holomap styling */
 .holomap-container {
     @apply h-64 bg-gray-800 rounded-lg mt-4 border border-cyan-800 overflow-hidden w-full h-full flex items-center justify-center text-center;
 }
 
 .holomap-title {
-    @apply text-cyan-500 mb-2;
+    @apply text-cyan-500 mt-2 mb-2;
 }
 
 .holomap-subtitle {
-    @apply text-xs text-gray-400 mt-4;
+    @apply text-xs text-gray-400 mt-2 mb-2;
 }
 
 /* Portrait container */
