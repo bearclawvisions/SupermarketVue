@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Supermarket.Business.Services.Interface;
 using Supermarket.Domain.Dto.AppUser;
 using Supermarket.Domain.Entities;
+using Supermarket.Domain.Enums;
 
 namespace Supermarket.Api.Controllers;
 
@@ -39,7 +40,7 @@ public class AppUserController : BaseController
             
             var userRoles = await _appUserService.GetUserRoles(appUser);
             
-            return Ok(userRoles);
+            return Ok(userRoles.First());
         }
         catch (Exception ex)
         {
@@ -51,14 +52,13 @@ public class AppUserController : BaseController
     [HttpGet(nameof(AuthenticateUser))]
     public async Task<IActionResult> AuthenticateUser()
     {
-        var user = await _appUserService.AuthenticateUser(User);
-        // var user = await _userManager.GetUserAsync(User);
-        if (user == null)
-        {
-            return Ok("Not authenticated");
-        }
+        var appUser = await _appUserService.AuthenticateUser(User);
 
-        return Ok("Authenticated");
+        if (appUser == null)
+            return Ok(ApplicationRole.None);
+        
+        var userRoles = await _appUserService.GetUserRoles(appUser);
+        return Ok(userRoles.First());
     }
     
     [AllowAnonymous]

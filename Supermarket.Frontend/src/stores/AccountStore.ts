@@ -1,7 +1,7 @@
 ﻿import {ref} from 'vue';
 import {defineStore} from 'pinia';
 import axios from '@/api/axios.ts';
-import type {ErrorResponse, StringResponse} from '@/types/Responses.ts';
+import type {ErrorResponse, IntResponse, ListResponse, StringResponse} from '@/types/Responses.ts';
 import {Endpoints} from "@/enums/Endpoints.ts";
 import {Stores} from "@/enums/Stores.ts";
 import router from "@/router";
@@ -13,15 +13,16 @@ export const useAccountStore = defineStore(Stores.Account, () => {
   const isLoggedIn = ref(false);
   const role = ref<UserRoles>(UserRoles.None);
 
-  function logIn(): void {
+  function logIn(backendRole: UserRoles): void {
     isLoggedIn.value = true;
+    role.value = backendRole;
   }
 
   async function logOut(): Promise<void> {
     await axios.post(Endpoints.Logout)
       .then((response: StringResponse) => {
         isLoggedIn.value = false;
-        resetRoles();
+        role.value = UserRoles.None;
         router.push(Routes.Home);
       })
       .catch((error: ErrorResponse) => {
@@ -31,9 +32,11 @@ export const useAccountStore = defineStore(Stores.Account, () => {
 
   async function checkIfLoggedIn(): Promise<void> {
     await axios.get(Endpoints.AuthenticateUser)
-      .then((response: StringResponse) => {
-        if (response.data === 'Authenticated') logIn();
-        if (response.data === 'Not authenticated') return;
+      .then((response: IntResponse<UserRoles>) => {
+        if (response.data === UserRoles.None)
+          return;
+        else
+          logIn(response.data);
       })
       .catch((error: ErrorResponse) => {
         console.error(error.response.data.message);
@@ -43,14 +46,6 @@ export const useAccountStore = defineStore(Stores.Account, () => {
   function menuItems(): any[] {
     return getMenuForRole(role.value);
   }
-  
-  function setRole(roles: UserRoles[]): void {
-    role.value = roles[0];
-  }
-  
-  function resetRoles(): void {
-    role.value = UserRoles.None;
-  }
 
   return {
     isLoggedIn,
@@ -58,7 +53,6 @@ export const useAccountStore = defineStore(Stores.Account, () => {
     logIn,
     logOut,
     checkIfLoggedIn,
-    setRole,
     menuItems,
   }
 });

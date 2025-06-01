@@ -2,6 +2,7 @@
 
 public enum ApplicationRole
 {
+    None,
     Admin,
     Moderator,
     Supervisor,

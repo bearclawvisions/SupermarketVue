@@ -7,7 +7,7 @@ import { Message } from 'primevue'
 import { inject, ref } from 'vue'
 import type { LoginModel, RegisterModel } from '@/types/Models.ts'
 import axios from '@/api/axios.ts'
-import type {ErrorResponse, ListResponse, StringResponse} from '@/types/Responses.ts'
+import type {ErrorResponse, IntResponse } from '@/types/Responses.ts'
 import type { ToastHelper } from '@/composables/toastHelper.ts'
 import Password from 'primevue/password'
 import Button from 'primevue/button'
@@ -39,9 +39,8 @@ const registerResolver = ({ values }: { values: any }) => {
 const onLoginFormSubmit = async ({ valid, values }: { valid: boolean, values: any }) => {
   if (valid) {
     await axios.post(Endpoints.Login, values as RegisterModel)
-      .then((result: ListResponse<UserRoles>) => {
-        accountStore.logIn();
-        accountStore.setRole(result.data);
+      .then((result: IntResponse<UserRoles>) => {
+        accountStore.logIn(result.data);
         toastHelper.displayInfo("Successfully logged in.");
         router.push(Routes.Home);
       })
