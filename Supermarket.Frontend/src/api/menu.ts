@@ -41,19 +41,41 @@ const menuItems: MenuItemConfig[] = [
         id: 'external',
         label: 'External',
         icon: 'pi pi-external-link',
-        roles: [UserRoles.None, UserRoles.Admin, UserRoles.Customer],
+        roles: [UserRoles.None, UserRoles.Customer],
         items: [
             {
                 id: 'vuejs',
                 label: 'Vue.js',
                 url: 'https://vuejs.org/',
-                roles: [UserRoles.None, UserRoles.Admin, UserRoles.Customer]
+                roles: [UserRoles.None, UserRoles.Customer]
             },
             {
                 id: 'vitejs',
                 label: 'Vite.js',
                 url: 'https://vitejs.dev/',
-                roles: [UserRoles.None, UserRoles.Admin, UserRoles.Customer]
+                roles: [UserRoles.None, UserRoles.Customer]
+            }
+        ]
+    },
+    {
+        id: 'manage',
+        label: 'Manage',
+        icon: 'pi pi-pencil',
+        roles: [UserRoles.Admin],
+        items: [
+            {
+                id: 'manage-users',
+                label: 'Manage Users',
+                icon: 'pi pi-user-edit',
+                route: Routes.ManageUsers,
+                roles: [UserRoles.Admin]
+            },
+            {
+                id: 'manage-shop',
+                label: 'Manage Shop',
+                icon: 'pi pi-pen-to-square',
+                route: Routes.ManageShop,
+                roles: [UserRoles.Admin]
             }
         ]
     }

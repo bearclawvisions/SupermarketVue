@@ -9,4 +9,6 @@ export enum Routes {
     Cart = "/cart",
     Checkout = "/checkout",
     Order = "/order",
+    ManageUsers = "/manage-users",
+    ManageShop = "/manage-shop",
 }

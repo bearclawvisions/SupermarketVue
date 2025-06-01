@@ -7,7 +7,6 @@ import {Stores} from "@/enums/Stores.ts";
 import router from "@/router";
 import {Routes} from "@/enums/Routes.ts";
 import {UserRoles} from "@/enums/UserRoles.ts";
-import type {MenuItemConfig} from "@/types/Models.ts";
 import {getMenuForRole} from "@/api/menu.ts";
 
 export const useAccountStore = defineStore(Stores.Account, () => {

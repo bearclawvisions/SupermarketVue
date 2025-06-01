@@ -25,35 +25,36 @@ const router = createRouter({
             meta: {
                 requiresAuth: true,
             }
-            // component: () => import('../views/ShopView.vue'),
         },
         {
             path: Routes.Login,
             name: 'login',
             component: LoginView,
-            // component: () => import('../views/LoginView.vue'),
         },
         {
             path: Routes.Register,
             name: 'register',
-            component: RegisterView,
-            // component: () => import('../views/RegisterView.vue'),
+            component: () => import('@/views/RegisterView.vue'),
         },
         {
             path: Routes.About,
             name: 'about',
-            // route level code-splitting
-            // this generates a separate chunk (About.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import('../views/AboutView.vue'),
+            component: () => import('@/views/AboutView.vue'),
         },
         {
             path: Routes.Privacy,
             name: 'privacy',
-            // route level code-splitting
-            // this generates a separate chunk (About.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import('../views/PrivacyView.vue'),
+            component: () => import('@/views/PrivacyView.vue'),
+        },
+        {
+            path: Routes.ManageUsers,
+            name: 'manage-users',
+            component: () => import('@/views/ManageUsersView.vue'),
+        },
+        {
+            path: Routes.ManageShop,
+            name: 'manage-shop',
+            component: () => import('@/views/ManageShopView.vue'),
         },
     ],
 });
