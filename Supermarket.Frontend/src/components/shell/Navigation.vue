@@ -1,50 +1,12 @@
 ﻿<script setup lang="ts">
 import { RouterLink } from 'vue-router';
 import { Menubar, TieredMenu, Button } from 'primevue';
-import { ref } from 'vue';
+import {computed, ref} from 'vue';
 import { useAccountStore } from '@/stores/AccountStore.ts';
 import {Routes} from "@/enums/Routes.ts";
 
-const menuItems = ref([
-  {
-    label: 'Home',
-    icon: 'pi pi-home',
-    route: Routes.Home,
-  },
-  {
-    label: 'Shop',
-    icon: 'pi pi-shop',
-    route: Routes.Shop,
-  },
-  {
-    label: 'Business information',
-    icon: 'pi pi-building',
-    items: [
-      {
-        label: 'About',
-        route: Routes.About,
-      },
-      {
-        label: 'Privacy',
-        route: Routes.Privacy,
-      }
-    ]
-  },
-  {
-    label: 'External',
-    icon: 'pi pi-external-link',
-    items: [
-      {
-        label: 'Vue.js',
-        url: 'https://vuejs.org/'
-      },
-      {
-        label: 'Vite.js',
-        url: 'https://vitejs.dev/'
-      }
-    ]
-  }
-]);
+const accountStore = useAccountStore()
+const menuItems = computed(() => accountStore.menuItems());
 
 const accountMenu = ref();
 const account = ref([
@@ -66,7 +28,6 @@ const toggle = (event: Event) => {
   accountMenu.value.toggle(event);
 };
 
-const accountStore = useAccountStore()
 </script>
 
 <template>

@@ -1,17 +1,18 @@
-﻿import { ref } from 'vue';
-import { defineStore } from 'pinia';
+﻿import {ref} from 'vue';
+import {defineStore} from 'pinia';
 import axios from '@/api/axios.ts';
-import type { ErrorResponse, StringResponse } from '@/types/Responses.ts';
+import type {ErrorResponse, StringResponse} from '@/types/Responses.ts';
 import {Endpoints} from "@/enums/Endpoints.ts";
 import {Stores} from "@/enums/Stores.ts";
 import router from "@/router";
 import {Routes} from "@/enums/Routes.ts";
 import {UserRoles} from "@/enums/UserRoles.ts";
+import type {MenuItemConfig} from "@/types/Models.ts";
+import {getMenuForRole} from "@/api/menu.ts";
 
 export const useAccountStore = defineStore(Stores.Account, () => {
   const isLoggedIn = ref(false);
-  const isAdmin = ref(false);
-  const isCustomer = ref(false);
+  const role = ref<UserRoles>(UserRoles.None);
 
   function logIn(): void {
     isLoggedIn.value = true;
@@ -40,23 +41,25 @@ export const useAccountStore = defineStore(Stores.Account, () => {
       })
   }
   
+  function menuItems(): any[] {
+    return getMenuForRole(role.value);
+  }
+  
   function setRole(roles: UserRoles[]): void {
-    isAdmin.value = roles.includes(UserRoles.Admin);
-    isCustomer.value = roles.includes(UserRoles.Customer);
+    role.value = roles[0];
   }
   
   function resetRoles(): void {
-    isAdmin.value = false;
-    isCustomer.value = false; 
+    role.value = UserRoles.None;
   }
 
   return {
     isLoggedIn,
-    isAdmin,
-    isCustomer,
+    role,
     logIn,
     logOut,
     checkIfLoggedIn,
     setRole,
+    menuItems,
   }
 });

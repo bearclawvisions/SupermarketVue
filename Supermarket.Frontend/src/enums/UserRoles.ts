@@ -4,4 +4,5 @@ export enum UserRoles {
     Supervisor,
     Employee,
     Customer,
+    None,
 }
