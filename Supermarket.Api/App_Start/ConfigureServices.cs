@@ -18,6 +18,6 @@ public static class ConfigureServices
         services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
         
         // services
-        services.AddScoped(typeof(IAppUserService), typeof(AppAppUserService));
+        services.AddScoped(typeof(IAppUserService), typeof(AppUserService));
     }
 }

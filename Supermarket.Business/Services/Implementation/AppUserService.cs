@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Supermarket.Business.CustomExceptions;
 using Supermarket.Business.Services.Interface;
+using Supermarket.Data.Repository.Interface;
 using Supermarket.Domain.Dto.AppUser;
 using Supermarket.Domain.Entities;
 using Supermarket.Domain.Enums;
@@ -8,15 +9,17 @@ using System.Security.Claims;
 
 namespace Supermarket.Business.Services.Implementation;
 
-public class AppAppUserService : IAppUserService
+public class AppUserService : IAppUserService
 {
     private readonly UserManager<AppUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public AppAppUserService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
+    public AppUserService(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IUnitOfWork unitOfWork)
     {
         _userManager = userManager;
         _roleManager = roleManager;
+        _unitOfWork = unitOfWork;
     }
     
     public async Task<string> CreateNewUser(RegisterDto newUser)
@@ -37,7 +40,8 @@ public class AppAppUserService : IAppUserService
             LastLogin = DateTime.UtcNow,
         };
         var result = await _userManager.CreateAsync(user, newUser.Password);
-        
+
+        SetUserRole(user);
         
         if (!result.Succeeded)
         {
@@ -51,6 +55,11 @@ public class AppAppUserService : IAppUserService
         // await _emailService.SendEmailAsync(user.Email, "Confirm your email", confirmationLink);
 
         return "Successfully registered";
+    }
+
+    public async Task SetUserRole(AppUser user, ApplicationRole? role = null)
+    {
+        
     }
 
     public async Task<AppUser> GetUserForLogin(LoginDto userLogin)
@@ -85,5 +94,11 @@ public class AppAppUserService : IAppUserService
             .Select(role => Enum.Parse<ApplicationRole>(role))
             .Cast<int>()
             .ToList();
+    }
+
+    public async Task<List<AppUser>> GetAllUsers()
+    {
+        var users = await _unitOfWork.AppUser.GetAllAsync();
+        return users.ToList();
     }
 }
