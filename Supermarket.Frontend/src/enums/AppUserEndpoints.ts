@@ -1,4 +1,4 @@
-export enum Endpoints {
+export enum AppUserEndpoints {
     Login = "/api/AppUser/Login",
     Register = "/api/AppUser/Register",
     Logout = "/api/AppUser/Logout",

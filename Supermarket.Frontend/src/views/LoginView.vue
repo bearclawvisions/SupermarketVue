@@ -14,7 +14,7 @@ import Button from 'primevue/button'
 import { useAccountStore } from '@/stores/AccountStore'
 import router from "@/router";
 import {Routes} from "@/enums/Routes.ts";
-import {Endpoints} from "@/enums/Endpoints.ts";
+import {AppUserEndpoints} from "@/enums/AppUserEndpoints.ts";
 import type {UserRoles} from "@/enums/UserRoles.ts";
 
 const toastHelper = inject('toastHelper') as ToastHelper
@@ -38,7 +38,7 @@ const registerResolver = ({ values }: { values: any }) => {
 
 const onLoginFormSubmit = async ({ valid, values }: { valid: boolean, values: any }) => {
   if (valid) {
-    await axios.post(Endpoints.Login, values as RegisterModel)
+    await axios.post(AppUserEndpoints.Login, values as RegisterModel)
       .then((result: IntResponse<UserRoles>) => {
         accountStore.logIn(result.data);
         toastHelper.displayInfo("Successfully logged in.");

@@ -2,7 +2,7 @@
 import {defineStore} from 'pinia';
 import axios from '@/api/axios.ts';
 import type {ErrorResponse, IntResponse, ListResponse, StringResponse} from '@/types/Responses.ts';
-import {Endpoints} from "@/enums/Endpoints.ts";
+import {AppUserEndpoints} from "@/enums/AppUserEndpoints.ts";
 import {Stores} from "@/enums/Stores.ts";
 import router from "@/router";
 import {Routes} from "@/enums/Routes.ts";
@@ -11,6 +11,7 @@ import {getMenuForRole} from "@/api/menu.ts";
 
 export const useAccountStore = defineStore(Stores.Account, () => {
   const isLoggedIn = ref(false);
+  const userId = ref<string>('00000000-0000-0000-0000-000000000000');
   const role = ref<UserRoles>(UserRoles.None);
 
   function logIn(backendRole: UserRoles): void {
@@ -19,7 +20,7 @@ export const useAccountStore = defineStore(Stores.Account, () => {
   }
 
   async function logOut(): Promise<void> {
-    await axios.post(Endpoints.Logout)
+    await axios.post(AppUserEndpoints.Logout)
       .then((response: StringResponse) => {
         isLoggedIn.value = false;
         role.value = UserRoles.None;
@@ -31,7 +32,7 @@ export const useAccountStore = defineStore(Stores.Account, () => {
   }
 
   async function checkIfLoggedIn(): Promise<void> {
-    await axios.get(Endpoints.AuthenticateUser)
+    await axios.get(AppUserEndpoints.AuthenticateUser)
       .then((response: IntResponse<UserRoles>) => {
         if (response.data === UserRoles.None)
           return;

@@ -35,3 +35,13 @@ export interface MenuItemConfig {
   items?: MenuItemConfig[];
   roles: UserRoles[];
 }
+
+export interface UserModel {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  emailConfirmed: boolean;
+  createdOn: Date;
+  lastLogin: Date;
+}
