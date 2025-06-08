@@ -6,6 +6,7 @@ import {ManageEndpoints} from "@/enums/ManageEndpoints.ts";
 import {UserRoles} from "@/enums/UserRoles.ts";
 import {getEnumKeyByValue} from "@/composables/enumHelper.ts";
 import FullScreenContainer from "@/components/containers/FullScreenContainer.vue";
+import UserTableComponent from "@/components/tables/UserTableComponent.vue";
 
 const userList = ref<UserModel[]>();
 
@@ -24,12 +25,15 @@ onMounted(async () => {
   <FullScreenContainer>
     <template #title>Manage User</template>
     <template #body>
-    <div v-for="user in userList" :id="user.id">
-      <div>{{ user.firstName }} {{ user.lastName }}</div>
-      <div v-for="role in user.roles">
-        <div>{{ getEnumKeyByValue(UserRoles, role) }}</div>
-      </div>
-    </div>
+      <UserTableComponent :users="userList">
+        
+      </UserTableComponent>
+<!--    <div v-for="user in userList" :id="user.id">-->
+<!--      <div>{{ user.firstName }} {{ user.lastName }}</div>-->
+<!--      <div v-for="role in user.roles">-->
+<!--        <div>{{ getEnumKeyByValue(UserRoles, role) }}</div>-->
+<!--      </div>-->
+<!--    </div>-->
     </template>
   </FullScreenContainer>
 </template>
