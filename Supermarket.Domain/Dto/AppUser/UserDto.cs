@@ -9,7 +9,7 @@ public class UserDto
     public required string LastName { get; set; }
     public required string Email { get; set; }
     public bool EmailConfirmed { get; set; }
-    public DateTime CreatedOn { get; set; }
-    public DateTime LastLogin { get; set; }
+    public required string CreatedOn { get; set; }
+    public required string LastLogin { get; set; }
     public ApplicationRole Role { get; set; } = ApplicationRole.None;
 }

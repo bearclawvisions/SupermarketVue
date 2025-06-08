@@ -19,8 +19,8 @@ public class AppUserRepository(SuperContext context) : Repository<AppUser>(conte
             LastName = user.LastName,
             Email = user.Email ?? "no email",
             EmailConfirmed = user.EmailConfirmed,
-            CreatedOn = user.CreatedOn.Date,
-            LastLogin = user.LastLogin.Date,
+            CreatedOn = user.CreatedOn.ToString("yyyy-MM-dd"),
+            LastLogin = user.LastLogin.ToString("yyyy-MM-dd"),
         }).ToListAsync();
 
         return result;
