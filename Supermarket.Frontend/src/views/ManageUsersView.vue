@@ -10,14 +10,20 @@ import UserTableComponent from "@/components/tables/UserTableComponent.vue";
 
 const userList = ref<UserModel[]>();
 
+const fetchUsersWithRoleMapping = async (): Promise<void> => {
+  try {
+    const response = await axios.get<UserModel[]>(ManageEndpoints.GetAllUsers);
+    userList.value = response.data.map(user => ({
+      ...user,
+      role: getEnumKeyByValue(UserRoles, user.role)
+    })) as UserModel[];
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 onMounted(async () => {
-  await axios.get<UserModel[]>(ManageEndpoints.GetAllUsers)
-    .then((response)  => {
-      userList.value = response.data;
-    })
-    .catch(error => {
-      console.log(error);
-    })
+  await fetchUsersWithRoleMapping();
 });
 </script>
 
@@ -25,15 +31,7 @@ onMounted(async () => {
   <FullScreenContainer>
     <template #title>Manage User</template>
     <template #body>
-      <UserTableComponent :users="userList">
-        
-      </UserTableComponent>
-<!--    <div v-for="user in userList" :id="user.id">-->
-<!--      <div>{{ user.firstName }} {{ user.lastName }}</div>-->
-<!--      <div v-for="role in user.roles">-->
-<!--        <div>{{ getEnumKeyByValue(UserRoles, role) }}</div>-->
-<!--      </div>-->
-<!--    </div>-->
+      <UserTableComponent :users="userList"/>
     </template>
   </FullScreenContainer>
 </template>

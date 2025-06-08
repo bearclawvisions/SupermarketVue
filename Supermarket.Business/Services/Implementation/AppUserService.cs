@@ -91,7 +91,7 @@ public class AppUserService : IAppUserService
         var roles = await _userManager.GetRolesAsync(appUser);
         
         return roles
-            .Select(role => Enum.Parse<ApplicationRole>(role))
+            .Select(Enum.Parse<ApplicationRole>)
             .Cast<int>()
             .ToList();
     }
