@@ -14,7 +14,7 @@ defineProps({
     <Column field="lastName" header="Lastname"></Column>
     <Column field="email" header="Email"></Column>
     <Column field="emailConfirmed" header="EmailConfirmed"></Column>
-    <Column field="roles" header="Roles"></Column>
+    <Column field="role" header="Role"></Column>
     <Column field="createdOn" header="CreatedOn"></Column>
     <Column field="lastLogin" header="LastLogin"></Column>
     <template #footer>In total there are {{ users ? users.length : 0 }} users.</template>

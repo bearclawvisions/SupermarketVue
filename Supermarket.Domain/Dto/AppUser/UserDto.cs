@@ -11,5 +11,5 @@ public class UserDto
     public bool EmailConfirmed { get; set; }
     public DateTime CreatedOn { get; set; }
     public DateTime LastLogin { get; set; }
-    public List<ApplicationRole> Roles { get; set; } = [ApplicationRole.None];
+    public ApplicationRole Role { get; set; } = ApplicationRole.None;
 }

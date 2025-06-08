@@ -11,8 +11,8 @@ import UserTableComponent from "@/components/tables/UserTableComponent.vue";
 const userList = ref<UserModel[]>();
 
 onMounted(async () => {
-  await axios.get(ManageEndpoints.GetAllUsers)
-    .then(response => {
+  await axios.get<UserModel[]>(ManageEndpoints.GetAllUsers)
+    .then((response)  => {
       userList.value = response.data;
     })
     .catch(error => {

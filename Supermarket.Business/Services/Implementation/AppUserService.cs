@@ -108,7 +108,8 @@ public class AppUserService : IAppUserService
             var roles = await _userManager.GetRolesAsync(appUser);
             if (roles.Count == 0) continue;
             
-            user.Roles = roles.Select(Enum.Parse<ApplicationRole>).ToList();
+            // Everyone only gets 1 role
+            user.Role = Enum.Parse<ApplicationRole>(roles.First());
         }
         
         return users;
