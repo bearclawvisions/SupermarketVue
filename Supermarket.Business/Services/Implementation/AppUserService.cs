@@ -99,6 +99,18 @@ public class AppUserService : IAppUserService
     public async Task<List<UserDto>> GetAllUsers()
     {
         var users = await _unitOfWork.AppUser.GetAllUsersAsync();
+
+        foreach (var user in users)
+        {
+            var appUser = await _userManager.FindByIdAsync(user.Id.ToString());
+            if (appUser == null) continue;
+            
+            var roles = await _userManager.GetRolesAsync(appUser);
+            if (roles.Count == 0) continue;
+            
+            user.Roles = roles.Select(Enum.Parse<ApplicationRole>).ToList();
+        }
+        
         return users;
     }
 }

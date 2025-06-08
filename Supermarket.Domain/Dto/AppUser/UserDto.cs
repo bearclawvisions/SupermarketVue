@@ -1,3 +1,5 @@
+using Supermarket.Domain.Enums;
+
 namespace Supermarket.Domain.Dto.AppUser;
 
 public class UserDto
@@ -9,4 +11,5 @@ public class UserDto
     public bool EmailConfirmed { get; set; }
     public DateTime CreatedOn { get; set; }
     public DateTime LastLogin { get; set; }
+    public List<ApplicationRole> Roles { get; set; } = [ApplicationRole.None];
 }
