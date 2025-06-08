@@ -44,4 +44,5 @@ export interface UserModel {
   emailConfirmed: boolean;
   createdOn: Date;
   lastLogin: Date;
+  roles: UserRoles[];
 }
