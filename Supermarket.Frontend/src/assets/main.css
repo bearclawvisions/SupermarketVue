@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import 'primeicons/primeicons.css';
-@import '@/assets/container-styling.css';
 
 /* shell styling */
 .shell-wrapper {
@@ -30,4 +29,103 @@ main {
 /* interactivity styling */
 .clickable-link {
     @apply underline hover:text-cyan-400 font-semibold;
+}
+
+/* basic container styles */
+.basic-container {
+    @apply flex flex-col justify-center items-center max-w-[80%] p-3 leading-tight;
+    @apply lg:max-w-[900px];
+}
+
+.container-title {
+    @apply text-3xl font-semibold text-cyan-400 mb-4;
+}
+
+.container-subtitle {
+    @apply text-sm text-gray-400 italic;
+}
+
+/* large container styles */
+.large-text-container {
+    @apply flex flex-col justify-center items-center w-full p-8 leading-tight;
+    @apply lg:max-w-[900px];
+}
+
+.paragraph-heading {
+    @apply text-2xl font-semibold text-cyan-400 mb-4;
+}
+
+.paragraph-content {
+    @apply mb-8;
+}
+
+/* large container styles */
+.fullscreen-container {
+    @apply flex flex-col justify-center items-center leading-tight w-screen h-[85vh];
+    @apply lg:max-w-[900px];
+}
+
+/* Access Info */
+.access-info-container {
+    @apply bg-gray-900 p-6 rounded-lg border border-cyan-800;
+}
+
+.access-info-body {
+    @apply flex flex-col md:flex-row gap-6;
+}
+
+.access-info-item-title {
+    @apply text-xl font-medium text-cyan-300 mt-4 mb-2;
+}
+
+.access-info-footer {
+    @apply mt-10 pt-4 border-t border-gray-700 text-amber-500 text-sm;
+}
+
+/* Holomap styling */
+.holomap-container {
+    @apply bg-gray-800 rounded-lg mt-4 border border-cyan-800 overflow-hidden w-full h-full flex items-center justify-center text-center;
+}
+
+.holomap-title {
+    @apply text-cyan-500 mt-2 mb-2;
+}
+
+.holomap-subtitle {
+    @apply text-xs text-gray-400 mt-2 mb-2;
+}
+
+/* Portrait container */
+.portrait-container {
+    @apply flex flex-wrap justify-center gap-6 mt-6 text-center;
+}
+
+.portrait-photo {
+    @apply w-30 h-50 rounded-2xl bg-gray-800 mx-auto mb-2 overflow-hidden border border-cyan-700;
+}
+
+.photo {
+    @apply w-full h-full object-cover;
+}
+
+.portrait-subtitle {
+    @apply text-sm text-gray-400;
+}
+
+.portrait-id {
+    @apply text-xs text-cyan-600;
+}
+
+/* blue card container */
+.blue-card-container {
+    @apply grid md:grid-cols-2 gap-6;
+}
+
+/* card styles */
+.blue-card {
+    @apply bg-gray-900 p-4 rounded-lg border border-cyan-800;
+}
+
+.blue-card-title {
+    @apply text-xl font-medium text-cyan-300 mb-2;
 }

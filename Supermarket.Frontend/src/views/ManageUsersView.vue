@@ -5,6 +5,7 @@ import axios from "@/api/axios.ts";
 import {ManageEndpoints} from "@/enums/ManageEndpoints.ts";
 import {UserRoles} from "@/enums/UserRoles.ts";
 import {getEnumKeyByValue} from "@/composables/enumHelper.ts";
+import FullScreenContainer from "@/components/containers/FullScreenContainer.vue";
 
 const userList = ref<UserModel[]>();
 
@@ -20,12 +21,17 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-for="user in userList" :id="user.id">
-    <div>{{ user.firstName }} {{ user.lastName }}</div>
-    <div v-for="role in user.roles">
-      <div>{{ getEnumKeyByValue(UserRoles, role) }}</div>
+  <FullScreenContainer>
+    <template #title>Manage User</template>
+    <template #body>
+    <div v-for="user in userList" :id="user.id">
+      <div>{{ user.firstName }} {{ user.lastName }}</div>
+      <div v-for="role in user.roles">
+        <div>{{ getEnumKeyByValue(UserRoles, role) }}</div>
+      </div>
     </div>
-  </div>
+    </template>
+  </FullScreenContainer>
 </template>
 
 <style scoped>
