@@ -33,7 +33,7 @@ main {
 
 /* basic container styles */
 .basic-container {
-    @apply flex flex-col justify-center items-center max-w-[80%] p-3 leading-tight;
+    @apply flex flex-col justify-center items-center max-w-[80%] p-3 m-4 leading-tight;
     @apply lg:max-w-[900px];
 }
 
@@ -47,7 +47,7 @@ main {
 
 /* large container styles */
 .large-text-container {
-    @apply flex flex-col justify-center items-center w-full p-8 leading-tight;
+    @apply flex flex-col justify-center items-center w-[90vw] m-8 p-2 leading-tight;
     @apply lg:max-w-[900px];
 }
 
