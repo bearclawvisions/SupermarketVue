@@ -96,9 +96,9 @@ public class AppUserService : IAppUserService
             .ToList();
     }
 
-    public async Task<List<AppUser>> GetAllUsers()
+    public async Task<List<UserDto>> GetAllUsers()
     {
-        var users = await _unitOfWork.AppUser.GetAllAsync();
-        return users.ToList();
+        var users = await _unitOfWork.AppUser.GetAllUsersAsync();
+        return users;
     }
 }

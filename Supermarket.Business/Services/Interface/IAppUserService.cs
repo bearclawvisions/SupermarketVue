@@ -10,5 +10,5 @@ public interface IAppUserService
     Task<AppUser> GetUserForLogin(LoginDto newUser);
     Task<AppUser?> AuthenticateUser(ClaimsPrincipal user);
     Task<List<int>> GetUserRoles(AppUser user);
-    Task<List<AppUser>> GetAllUsers();
+    Task<List<UserDto>> GetAllUsers();
 }
