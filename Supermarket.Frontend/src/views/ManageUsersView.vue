@@ -44,17 +44,6 @@ const columnConfig = defineColumns<UserModel>(
             // router.push(`/users/${user.id}/edit`);
           }
         },
-        // {
-        //   label: 'Toggle Status',
-        //   icon: 'pi pi-power-off',
-        //   severity: 'warn',
-        //   action: (user: UserModel) => {
-        //     console.log('Toggling status for:', user);
-        //     // Toggle user status
-        //     user.status = user.status === 'active' ? 'inactive' : 'active';
-        //   },
-        //   // visible: (user: UserModel) => user.id === 1 // hide based on state id
-        // },
         {
           label: 'Delete User',
           icon: 'pi pi-trash',
