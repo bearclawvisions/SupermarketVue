@@ -134,3 +134,8 @@ main {
 .datatable {
     @apply text-sm;
 }
+
+/* buttons */
+.button-group {
+    @apply flex flex-row gap-0.5;
+}

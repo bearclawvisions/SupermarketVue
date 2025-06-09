@@ -61,7 +61,7 @@ const getVisibleActions = (item: T) => {
     
     <Column header="Actions" :sortable="false" v-if="hasActions">
       <template #body="{ data }: { data: T }">
-        <div class="flex gap-2">
+        <div class="button-group">
           <Button
               v-for="action in getVisibleActions(data)"
               :key="action.label"

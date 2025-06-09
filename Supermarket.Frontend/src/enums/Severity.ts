@@ -5,4 +5,5 @@
   SUCCESS = "success",
   CONTRAST = "contrast",
   SECONDARY = "secondary",
+  DANGER = "danger",
 }
