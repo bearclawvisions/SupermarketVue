@@ -72,7 +72,6 @@ const columnConfig = defineColumns<UserModel>(
     }
 );
 
-// Create skeleton data for loading state
 const createSkeletonData = (): UserModel[] => {
   return Array.from({length: 5}, (_, index) => ({
     id: `skeleton-${index}`,
@@ -118,7 +117,3 @@ onMounted(async () => {
     </template>
   </FullScreenContainer>
 </template>
-
-<style scoped>
-
-</style>

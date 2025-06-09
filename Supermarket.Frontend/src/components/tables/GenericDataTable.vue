@@ -11,7 +11,6 @@ const props = defineProps<{
 
 const selected = ref<T[]>([]);
 
-// Check if any column has actions defined
 const hasActions = computed(() => {
   return props.columns.some(column => column.actions && column.actions.length > 0);
 });
@@ -27,14 +26,12 @@ const getAllActions = (item: T) => {
   return allActions;
 };
 
-// Get visible actions for a specific item
 const getVisibleActions = (item: T) => {
   const actions = getAllActions(item);
   return actions.filter(action =>
       action.visible ? action.visible(item) : true
   );
 };
-
 </script>
 
 <template>

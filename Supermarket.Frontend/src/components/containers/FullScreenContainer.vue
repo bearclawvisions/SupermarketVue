@@ -20,7 +20,3 @@ import Panel from 'primevue/panel';
     </template>
   </Panel>
 </template>
-
-<style scoped>
-
-</style>
