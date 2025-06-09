@@ -72,9 +72,9 @@ const toggle = (event: Event) => {
           <TieredMenu ref="accountMenu" id="overlay_account_menu" :model="account" popup />
         </div>
         <div v-else>
-          <RouterLink :to="Routes.Login">Log in</RouterLink>
+          <RouterLink :to="Routes.Login">{{NavLabel.Login}}</RouterLink>
           <span> / </span>
-          <RouterLink :to="Routes.Register">Register</RouterLink>
+          <RouterLink :to="Routes.Register">{{NavLabel.Register}}</RouterLink>
         </div>
       </template>
     </Menubar>
