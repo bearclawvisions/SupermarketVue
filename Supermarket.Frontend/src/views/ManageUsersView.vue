@@ -10,6 +10,7 @@ import GenericDataTable from "@/components/tables/GenericDataTable.vue";
 import {defineColumns} from "@/composables/typeHelper.ts";
 
 const userList = ref<UserModel[]>([]);
+const isLoading = ref(true);
 
 const columnConfig = defineColumns<UserModel>(
     { field: 'id', header: 'Id', hidden: true },
@@ -22,9 +23,23 @@ const columnConfig = defineColumns<UserModel>(
     { field: 'lastLogin', header: 'Last Login' }
 );
 
+// Create skeleton data for loading state
+const createSkeletonData = (): UserModel[] => {
+  return Array.from({ length: 5 }, (_, index) => ({
+    id: `skeleton-${index}`,
+    firstName: '',
+    lastName: '',
+    email: '',
+    role: '',
+    emailConfirmed: true,
+    createdOn: new Date(),
+    lastLogin: new Date()
+  })) as UserModel[];
+};
 
 const fetchUsersWithRoleMapping = async (): Promise<void> => {
   try {
+    isLoading.value = true;
     const response = await axios.get<UserModel[]>(ManageEndpoints.GetAllUsers);
     userList.value = response.data.map(user => ({
       ...user,
@@ -32,6 +47,8 @@ const fetchUsersWithRoleMapping = async (): Promise<void> => {
     })) as UserModel[];
   } catch (error) {
     console.log(error);
+  } finally {
+    isLoading.value = false;
   }
 };
 
@@ -44,7 +61,11 @@ onMounted(async () => {
   <FullScreenContainer>
     <template #title>Manage Users</template>
     <template #body>
-      <GenericDataTable :data="userList" :columns="columnConfig"/>
+      <GenericDataTable 
+          :data="isLoading ? createSkeletonData() : userList" 
+          :columns="columnConfig" 
+          :is-loading="isLoading"
+      />
     </template>
   </FullScreenContainer>
 </template>
