@@ -51,4 +51,13 @@ export interface ColumnConfig<T> {
   field: keyof T;
   header: string;
   hidden?: boolean;
+  actions?: ActionConfig<T>[];
+}
+
+interface ActionConfig<T> {
+  label: string;
+  icon: string;
+  severity?: 'info' | 'danger' | 'warning' | 'success' | 'contrast' | 'secondary';
+  action: (item: T) => void;
+  visible?: (item: T) => boolean;
 }
