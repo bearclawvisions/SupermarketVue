@@ -129,3 +129,8 @@ main {
 .blue-card-title {
     @apply text-xl font-medium text-cyan-300 mb-2;
 }
+
+/* Generic Datatable */
+.datatable {
+    @apply text-sm;
+}

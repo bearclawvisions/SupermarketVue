@@ -6,9 +6,22 @@ import {ManageEndpoints} from "@/enums/ManageEndpoints.ts";
 import {UserRoles} from "@/enums/UserRoles.ts";
 import {getEnumKeyByValue} from "@/composables/enumHelper.ts";
 import FullScreenContainer from "@/components/containers/FullScreenContainer.vue";
-import UserTableComponent from "@/components/tables/UserTableComponent.vue";
+import GenericDataTable from "@/components/tables/GenericDataTable.vue";
+import {defineColumns} from "@/composables/typeHelper.ts";
 
-const userList = ref<UserModel[]>();
+const userList = ref<UserModel[]>([]);
+
+const columnConfig = defineColumns<UserModel>(
+    { field: 'id', header: 'Id', hidden: true },
+    { field: 'firstName', header: 'First Name' },
+    { field: 'lastName', header: 'Last Name' },
+    { field: 'email', header: 'Email' },
+    { field: 'role', header: 'Role' },
+    { field: 'emailConfirmed', header: 'Email Confirmed', hidden: true },
+    { field: 'createdOn', header: 'Created On', hidden: true },
+    { field: 'lastLogin', header: 'Last Login' }
+);
+
 
 const fetchUsersWithRoleMapping = async (): Promise<void> => {
   try {
@@ -29,9 +42,9 @@ onMounted(async () => {
 
 <template>
   <FullScreenContainer>
-    <template #title>Manage User</template>
+    <template #title>Manage Users</template>
     <template #body>
-      <UserTableComponent :users="userList"/>
+      <GenericDataTable :data="userList" :columns="columnConfig"/>
     </template>
   </FullScreenContainer>
 </template>

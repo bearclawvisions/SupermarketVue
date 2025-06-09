@@ -17,7 +17,7 @@ public class AppUserRepository(SuperContext context) : Repository<AppUser>(conte
             Id = Guid.Parse(user.Id),
             FirstName = user.FirstName,
             LastName = user.LastName,
-            Email = user.Email ?? "no email",
+            Email = user.Email,
             EmailConfirmed = user.EmailConfirmed,
             CreatedOn = user.CreatedOn.ToString("yyyy-MM-dd"),
             LastLogin = user.LastLogin.ToString("yyyy-MM-dd"),

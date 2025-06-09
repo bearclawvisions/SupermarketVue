@@ -46,3 +46,9 @@ export interface UserModel {
   lastLogin: Date;
   role: string;
 }
+
+export interface ColumnConfig<T> {
+  field: keyof T;
+  header: string;
+  hidden?: boolean;
+}
