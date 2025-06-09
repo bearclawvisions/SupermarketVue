@@ -9,6 +9,8 @@ import FullScreenContainer from "@/components/containers/FullScreenContainer.vue
 import GenericDataTable from "@/components/tables/GenericDataTable.vue";
 import {defineColumns} from "@/composables/typeHelper.ts";
 import {Severity} from "@/enums/Severity.ts";
+import {ButtonLabel} from "@/enums/ButtonLabel.ts";
+import {PrimeIcons} from '@primevue/core/api';
 
 const userList = ref<UserModel[]>([]);
 const isLoading = ref(true);
@@ -25,8 +27,8 @@ const columnConfig = defineColumns<UserModel>(
     {
       field: 'id', header: 'Actions', actions: [
         {
-          label: 'View Details',
-          icon: 'pi pi-eye',
+          label: ButtonLabel.ViewDetails,
+          icon: PrimeIcons.EYE,
           severity: Severity.SUCCESS,
           action: (user: UserModel) => {
             console.log('Viewing details for:', user);
@@ -35,8 +37,8 @@ const columnConfig = defineColumns<UserModel>(
           }
         },
         {
-          label: 'Edit User',
-          icon: 'pi pi-pencil',
+          label: ButtonLabel.Edit,
+          icon: PrimeIcons.PENCIL,
           severity: Severity.INFO,
           action: (user: UserModel) => {
             console.log('Editing user:', user);
@@ -45,8 +47,8 @@ const columnConfig = defineColumns<UserModel>(
           }
         },
         {
-          label: 'Delete User',
-          icon: 'pi pi-trash',
+          label: ButtonLabel.Delete,
+          icon: PrimeIcons.TRASH,
           severity: Severity.DANGER,
           action: (user: UserModel) => {
             console.log('Deleting user:', user);

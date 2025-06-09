@@ -1,0 +1,16 @@
+export enum NavLabel {
+    Profile = "Profile",
+    Logout = "Logout",
+    Home = "Home",
+    About = "About",
+    Shop = "Shop",
+    Cart = "Cart",
+    Privacy = "Privacy",
+    Login = "Login",
+    Register = "Register",
+    BusinessInformation = "Business Information",
+    External = "External",
+    Manage = "Manage",
+    ManageUsers = "Manage Users",
+    ManageShop = "Manage Shop",
+}

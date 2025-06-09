@@ -1,9 +1,11 @@
 ﻿<script setup lang="ts">
-import { RouterLink } from 'vue-router';
-import { Menubar, TieredMenu, Button } from 'primevue';
+import {RouterLink} from 'vue-router';
+import {Button, Menubar, TieredMenu} from 'primevue';
 import {computed, ref} from 'vue';
-import { useAccountStore } from '@/stores/AccountStore.ts';
+import {useAccountStore} from '@/stores/AccountStore.ts';
 import {Routes} from "@/enums/Routes.ts";
+import {PrimeIcons} from '@primevue/core/api';
+import {NavLabel} from "@/enums/NavLabel.ts";
 
 const accountStore = useAccountStore()
 const menuItems = computed(() => accountStore.menuItems());
@@ -11,13 +13,13 @@ const menuItems = computed(() => accountStore.menuItems());
 const accountMenu = ref();
 const account = ref([
   {
-    label: 'Profile',
-    icon: 'pi pi-user',
+    label: NavLabel.Profile,
+    icon: PrimeIcons.USER,
     route: Routes.Profile,
   },
   {
-    label: 'Logout',
-    icon: 'pi pi-sign-out',
+    label: NavLabel.Logout,
+    icon: PrimeIcons.SIGN_OUT,
     command: async () => {
       await accountStore.logOut();
     }

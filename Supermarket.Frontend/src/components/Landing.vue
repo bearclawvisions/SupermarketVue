@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import BasicTextContainer from "@/components/containers/BasicTextContainer.vue";
+import {PrimeIcons} from '@primevue/core/api';
+
+const icon = PrimeIcons.SHOPPING_BAG;
 </script>
 
 <template>
   <BasicTextContainer>
-    <template #icon><i class="pi pi-shopping-bag"/></template>
+    <template #icon><i :class="icon"/></template>
     <template #title>Neo-Vision Food Cube</template>
     <template #body>The place that has all your daily needs!</template>
   </BasicTextContainer>

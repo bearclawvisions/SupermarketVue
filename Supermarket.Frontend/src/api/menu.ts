@@ -1,46 +1,48 @@
 import {UserRoles} from "@/enums/UserRoles.ts";
 import {Routes} from "@/enums/Routes.ts";
 import type {MenuItemConfig} from "@/types/Models.ts";
+import {PrimeIcons} from "@primevue/core/api";
+import {NavLabel} from "@/enums/NavLabel.ts";
 
 const menuItems: MenuItemConfig[] = [
     {
-        id: 'home',
-        label: 'Home',
-        icon: 'pi pi-home',
+        id: NavLabel.Home,
+        label: NavLabel.Home,
+        icon: PrimeIcons.HOME,
         route: Routes.Home,
         roles: [UserRoles.None, UserRoles.Admin, UserRoles.Customer]
     },
     {
-        id: 'shop',
-        label: 'Shop',
+        id: NavLabel.Shop,
+        label: NavLabel.Shop,
         icon: 'pi pi-shop',
         route: Routes.Shop,
         roles: [UserRoles.Admin, UserRoles.Customer]
     },
     {
-        id: 'business-info',
-        label: 'Business information',
-        icon: 'pi pi-building',
+        id: NavLabel.BusinessInformation,
+        label: NavLabel.BusinessInformation,
+        icon: PrimeIcons.BUILDING,
         roles: [UserRoles.None, UserRoles.Admin, UserRoles.Customer],
         items: [
             {
-                id: 'about',
-                label: 'About',
+                id: NavLabel.About,
+                label: NavLabel.About,
                 route: Routes.About,
                 roles: [UserRoles.None, UserRoles.Admin, UserRoles.Customer]
             },
             {
-                id: 'privacy',
-                label: 'Privacy',
+                id: NavLabel.Privacy,
+                label: NavLabel.Privacy,
                 route: Routes.Privacy,
                 roles: [UserRoles.None, UserRoles.Admin, UserRoles.Customer]
             }
         ]
     },
     {
-        id: 'external',
-        label: 'External',
-        icon: 'pi pi-external-link',
+        id: NavLabel.External,
+        label: NavLabel.External,
+        icon: PrimeIcons.EXTERNAL_LINK,
         roles: [UserRoles.None, UserRoles.Customer],
         items: [
             {
@@ -58,21 +60,21 @@ const menuItems: MenuItemConfig[] = [
         ]
     },
     {
-        id: 'manage',
-        label: 'Manage',
-        icon: 'pi pi-pencil',
+        id: NavLabel.Manage,
+        label: NavLabel.Manage,
+        icon: PrimeIcons.PENCIL,
         roles: [UserRoles.Admin],
         items: [
             {
-                id: 'manage-users',
-                label: 'Manage Users',
-                icon: 'pi pi-user-edit',
+                id: NavLabel.ManageUsers,
+                label: NavLabel.ManageUsers,
+                icon: PrimeIcons.USER_EDIT,
                 route: Routes.ManageUsers,
                 roles: [UserRoles.Admin]
             },
             {
-                id: 'manage-shop',
-                label: 'Manage Shop',
+                id: NavLabel.ManageShop,
+                label: NavLabel.ManageShop,
                 icon: 'pi pi-pen-to-square',
                 route: Routes.ManageShop,
                 roles: [UserRoles.Admin]
