@@ -132,7 +132,7 @@ main {
 
 /* Generic Datatable */
 .datatable {
-    @apply text-sm;
+    @apply text-xs;
 }
 
 /* buttons */
