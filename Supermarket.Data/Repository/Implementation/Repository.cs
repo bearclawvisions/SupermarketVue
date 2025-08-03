@@ -30,7 +30,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
         await _dbSet.AddAsync(entity);
     }
 
-    public DbSet<TEntity> Read(TEntity entity)
+    public DbSet<TEntity> Read()
     {
         return _context.Set<TEntity>();
     }

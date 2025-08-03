@@ -8,12 +8,14 @@ public class UnitOfWork : IUnitOfWork
     private readonly SuperContext _context;
     public IProductRepository Product { get; }
     public IAppUserRepository AppUser { get; }
+    public IProductCategoryRepository ProductCategory { get; }
 
     public UnitOfWork(SuperContext context)
     {
         _context = context;
         Product = new ProductRepository(_context);
         AppUser = new AppUserRepository(_context);
+        ProductCategory = new ProductCategoryRepository(_context);
     }
 
     public async Task SaveChangesAsync()

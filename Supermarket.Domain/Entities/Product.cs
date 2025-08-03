@@ -17,10 +17,10 @@ public class Product : Audit
     public required string Name { get; set; }
     
     [Column(TypeName = "xml")]
-    public required string Metadata { get; set; } // xml
+    public required string Metadata { get; set; }
     
     [Range(0, 10000)]
-    public double Price { get; set; }
+    public decimal Price { get; set; }
     
     public int Quantity { get; set; }
     

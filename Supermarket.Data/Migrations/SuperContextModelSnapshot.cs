@@ -51,31 +51,37 @@ namespace Supermarket.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "76693f17-9f51-4e7c-be23-25bd8a90abf9",
+                            Id = "39afddaf-6db7-467b-b577-8934b0f79f03",
+                            Name = "None",
+                            NormalizedName = "NONE"
+                        },
+                        new
+                        {
+                            Id = "bf7245d2-6b20-40bf-a4ea-c6fd82e8a8ba",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "f3dc867f-1da6-4328-a544-9d4ecc4fe5b5",
+                            Id = "11a5cb20-dbf6-4e54-b914-3016b23893ae",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "50c29b5d-e725-42e2-8d96-0ac350cc72e6",
+                            Id = "47933cb4-e5f5-4b24-942b-4d45936ced97",
                             Name = "Supervisor",
                             NormalizedName = "SUPERVISOR"
                         },
                         new
                         {
-                            Id = "7f07e463-e8ee-4c2d-881d-ad30a6049353",
+                            Id = "7f2683df-5513-49fe-9d34-1b95331264fa",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "2c76f046-f3d3-4da5-91c6-bc360d24c8d9",
+                            Id = "eda75243-aa50-472a-b942-1ac85105df3d",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
@@ -397,8 +403,8 @@ namespace Supermarket.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
