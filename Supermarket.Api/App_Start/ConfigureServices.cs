@@ -19,5 +19,7 @@ public static class ConfigureServices
         
         // services
         services.AddScoped(typeof(IAppUserService), typeof(AppUserService));
+        services.AddScoped(typeof(IProductService), typeof(ProductService));
+        services.AddScoped(typeof(IProductCategoryService), typeof(ProductCategoryService));
     }
 }
