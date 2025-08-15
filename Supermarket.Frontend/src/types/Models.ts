@@ -47,6 +47,29 @@ export interface UserModel {
   role: string;
 }
 
+export interface ProductModel {
+  id: string;
+  name: string;
+  price: number;
+  stock: number;
+  productStatus: string;
+  expirationDate: Date;
+  createdOn: Date;
+  lastModifiedOn: Date;
+  createdBy: string;
+  lastModifiedBy: string;
+}
+
+export interface CategoryModel {
+  id: number;
+  name: string;
+  description: string;
+  createdOn: Date;
+  lastModifiedOn: Date;
+  createdBy: string;
+  lastModifiedBy: string;
+}
+
 export interface ColumnConfig<T> {
   field: keyof T;
   header: string;
