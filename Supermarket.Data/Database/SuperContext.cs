@@ -23,15 +23,27 @@ public class SuperContext(DbContextOptions<SuperContext> options) : IdentityDbCo
     {
         base.OnModelCreating(builder);
         
-        // seed roles
-        var roles = Enum.GetValues(typeof(ApplicationRole));
+        // seed roles with fixed IDs to prevent ID refresh on migrations
         var roleEntities = new List<IdentityRole>();
 
-        foreach (ApplicationRole role in roles)
+        // Define fixed IDs for each role to ensure consistency across migrations
+        var roleIdMap = new Dictionary<ApplicationRole, string>
         {
+            { ApplicationRole.Admin, "6c33cde8-cdf1-4aca-a8f0-0ab43903000e" },
+            { ApplicationRole.Moderator, "61926441-8fa0-4d2b-85a3-91a4ab95e2d0" },
+            { ApplicationRole.Supervisor, "ec79da32-4d4d-48ae-be26-fbee5ec56f93" },
+            { ApplicationRole.Employee, "fa174c70-8bff-4b6b-94a1-d567f8d0b3d4" },
+            { ApplicationRole.Customer, "83f1e13a-0a0a-447c-9007-5e6a07676c0d" }
+        };
+
+        foreach (ApplicationRole role in Enum.GetValues(typeof(ApplicationRole)))
+        {
+            // Skip the 'None' role as it's not a real user role
+            if (role == ApplicationRole.None) continue;
+
             roleEntities.Add(new IdentityRole
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = roleIdMap[role],
                 Name = role.ToString(),
                 NormalizedName = role.ToString().ToUpper()
             });

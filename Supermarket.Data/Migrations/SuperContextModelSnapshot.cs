@@ -51,37 +51,31 @@ namespace Supermarket.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "39afddaf-6db7-467b-b577-8934b0f79f03",
-                            Name = "None",
-                            NormalizedName = "NONE"
-                        },
-                        new
-                        {
-                            Id = "bf7245d2-6b20-40bf-a4ea-c6fd82e8a8ba",
+                            Id = "6c33cde8-cdf1-4aca-a8f0-0ab43903000e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "11a5cb20-dbf6-4e54-b914-3016b23893ae",
+                            Id = "61926441-8fa0-4d2b-85a3-91a4ab95e2d0",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         },
                         new
                         {
-                            Id = "47933cb4-e5f5-4b24-942b-4d45936ced97",
+                            Id = "ec79da32-4d4d-48ae-be26-fbee5ec56f93",
                             Name = "Supervisor",
                             NormalizedName = "SUPERVISOR"
                         },
                         new
                         {
-                            Id = "7f2683df-5513-49fe-9d34-1b95331264fa",
+                            Id = "fa174c70-8bff-4b6b-94a1-d567f8d0b3d4",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
-                            Id = "eda75243-aa50-472a-b942-1ac85105df3d",
+                            Id = "83f1e13a-0a0a-447c-9007-5e6a07676c0d",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });
