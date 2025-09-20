@@ -16,7 +16,7 @@ public static class ConfigureDatabase
             // Resolve AppSettings instance from the service provider
             var appSettings = serviceProvider.GetRequiredService<IOptionsMonitor<AppSettings>>().CurrentValue;
             
-            options.UseSqlServer(appSettings.ConnectionStrings.DefaultConnection);
+            options.UseNpgsql(appSettings.ConnectionStrings.DefaultConnection);
         });
 
         services.AddIdentity<AppUser, IdentityRole>()

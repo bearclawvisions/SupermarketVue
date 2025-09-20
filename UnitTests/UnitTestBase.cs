@@ -19,10 +19,10 @@ public class UnitTestBase
     [TestInitialize]
     public void Initialize()
     {
-        var connectionString = "";
+        var connectionString = "Host=localhost;Port=5432;Database=supermarket;User Id=supermarket;Password=DRQuWzDR@MVWswAmh5Kd;SSL Mode=Require;Trust Server Certificate=true";
     
         var options = new DbContextOptionsBuilder<SuperContext>()
-            .UseSqlServer(connectionString)
+            .UseNpgsql(connectionString)
             .Options;
 
         var context = new SuperContext(options);
@@ -32,32 +32,32 @@ public class UnitTestBase
     [TestMethod]
     public async Task SeedDatabase()
     {
-        const string dataPath = "";
+        const string dataPath = "/home/bereklauw/RiderProjects/SupermarketVue/UnitTests/data.json";
         await using var file = File.OpenRead(dataPath);
         var jsonData = await JsonSerializer.DeserializeAsync<JsonElement>(file);
 
         if (jsonData.TryGetProperty("products", out var productsElement))
         {
-            if (jsonData.TryGetProperty("categories", out var categoriesElement))
-            {
-                foreach (var categoryElement in categoriesElement.EnumerateArray())
-                {
-                    var name = categoryElement.GetProperty("name").GetString();
-                    var description = categoryElement.GetProperty("description").GetString();
-                
-                    var category = new ProductCategory()
-                    {
-                        Name = name, 
-                        Description = description,
-                        CreatedBy = "System",
-                        DateCreated = DateTime.Now
-                    };
-                    await _unit.ProductCategory.CreateAsync(category);
-                
-                    Console.WriteLine($"Category: {name} - Description: {description}");
-                }
-            }
-            await _unit.SaveChangesAsync();
+            // if (jsonData.TryGetProperty("categories", out var categoriesElement))
+            // {
+            //     foreach (var categoryElement in categoriesElement.EnumerateArray())
+            //     {
+            //         var name = categoryElement.GetProperty("name").GetString();
+            //         var description = categoryElement.GetProperty("description").GetString();
+            //     
+            //         var category = new ProductCategory()
+            //         {
+            //             Name = name, 
+            //             Description = description,
+            //             CreatedBy = "System",
+            //             DateCreated = DateTime.UtcNow
+            //         };
+            //         await _unit.ProductCategory.CreateAsync(category);
+            //     
+            //         Console.WriteLine($"Category: {name} - Description: {description}");
+            //     }
+            // }
+            // await _unit.SaveChangesAsync();
             
             foreach (var productElement in productsElement.EnumerateArray())
             {
@@ -97,7 +97,7 @@ public class UnitTestBase
                     ExtraInfo = extraInfo
                 }.ToXml();
                 
-                var catId = _unit.ProductCategory.Read().FirstOrDefault(x => x.Name == category).Id;
+                var catId = _unit.ProductCategory.Read().FirstOrDefault(x => x.Name.ToLower() == category.ToLower()).Id;
                 
                 var product = new Product
                 {
@@ -107,9 +107,9 @@ public class UnitTestBase
                     Price = priceKg,
                     Quantity = 10,
                     Status = ProductStatus.InStock,
-                    ExpiryDate = DateTime.Today.AddDays(30),
+                    ExpiryDate = DateTime.UtcNow.Date.AddDays(30),
                     CreatedBy = "System",
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.UtcNow
                 };
                 await _unit.Product.CreateAsync(product);
             }
